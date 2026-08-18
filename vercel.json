@@ -4,6 +4,14 @@
   "outputDirectory": "dist/client",
   "installCommand": "pnpm install --frozen-lockfile",
   "framework": null,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.aervigil.com" }],
+      "destination": "https://aervigil.com/$1",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/((?!assets/).*)", "destination": "/index.html" }
   ],
