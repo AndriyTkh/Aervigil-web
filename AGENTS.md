@@ -17,6 +17,27 @@ deeper detail lives in [docs/](docs/).
 - When the user gives durable prototype-specific design feedback, preferences or
   decisions, record them here.
 
+## Deployment
+
+- Hosted on Vercel project `aervigil-web` (scope `andriytkhs-projects`), git-connected to
+  this repo. The production branch is the repo default, `redesign/claude-design-v2`, so a
+  push to it deploys to production. `vercel.json` sets `outputDirectory` to `dist/client`
+  to match the vite `outDir` — plain `dist` serves nothing.
+- `adam.aervigil.com` belongs to a **separate** Vercel project, `adam-frontend`. Leave it
+  alone.
+- DNS for `aervigil.com` lives on Cloudflare and is managed by
+  [`scripts/setup-domain.mjs`](scripts/setup-domain.mjs) (idempotent; plans by default,
+  writes with `--apply`). It reads a Cloudflare API token from `CLOUDFLARE_API_TOKEN`,
+  `--token-file <path>`, or `~/.claude/secrets/cloudflare.token` — the last is the
+  persistent location, deliberately outside the repo and outside any session scratchpad.
+  The token needs only `Zone:DNS:Edit` on `aervigil.com`.
+- **Never** accept Vercel's suggestion to change the domain's nameservers to
+  `ns1/ns2.vercel-dns.com`. The zone carries `MX -> smtp.google.com` (Google Workspace)
+  and the `adam` records; delegating to Vercel drops both. Use the apex A record instead,
+  and keep Vercel-facing records **grey-cloud / DNS-only** — Cloudflare's proxy in front
+  of Vercel breaks cert issuance and loops redirects. `setup-domain.mjs` enforces
+  `proxied: false` and asserts the MX set is unchanged after every run.
+
 ## Where things go
 
 - **Copy** → [`src/content/site.ts`](src/content/site.ts). Never inline strings in JSX.
