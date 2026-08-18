@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face{font-family:'Plus Jakarta Sans';src:url('assets/plus-jakarta-sans-latin-wght-normal.woff2') format('woff2');font-weight:200 800;font-style:normal;font-display:swap}
+@font-face{font-family:'Plus Jakarta Sans';src:url('assets/plus-jakarta-sans-latin-wght-italic.woff2') format('woff2');font-weight:200 800;font-style:italic;font-display:swap}
+html{scroll-behavior:smooth}
+body{margin:0;background:#F5F8FA;color:#093C5C;font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#28ABE3;text-decoration:none}
+a:hover{color:#093C5C}
+@keyframes routeDash{to{stroke-dashoffset:-24}}
+@keyframes pulseDot{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.5);opacity:.4}}
+@media (prefers-reduced-motion: reduce){*{animation:none !important}}
+</style>
+</helmet>
+
+<nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 48px;background:rgba(245,248,250,.92);backdrop-filter:blur(12px);border-bottom:1px solid #E7EEF2">
+  <a href="#hero" style="display:flex;align-items:center;gap:12px">
+    <img src="assets/adam-logo-color.svg" alt="ADAM" style="height:34px;display:block"></img>
+    <span style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#667984;border-left:1px solid #E7EEF2;padding-left:12px">by AerVigil</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500">
+    <a href="#problem" style="color:#093C5C">Problem</a>
+    <a href="#solution" style="color:#093C5C">Technology</a>
+    <a href="#why" style="color:#093C5C">Why ADAM</a>
+    <a href="#demo" style="color:#093C5C">Demo</a>
+    <a href="#network" style="color:#093C5C">Pilot</a>
+    <a href="#company" style="color:#093C5C">Company</a>
+    <a href="#news" style="color:#093C5C">News</a>
+    <a href="#contact" style="display:inline-block;white-space:nowrap;padding:10px 20px;background:#093C5C;color:#F5F8FA;border-radius:6px;font-weight:600" style-hover="background:#28ABE3;color:#071F2E">Start a conversation</a>
+  </div>
+</nav>
+
+<header id="hero" data-screen-label="Hero" style="position:relative;overflow:hidden;background:#F5F8FA">
+  <img src="assets/illustrations/hero-moving-lab.png" alt="ADAM sensor on a partner vehicle tracing a measurement route through a city" style="position:absolute;right:0;top:0;height:100%;min-width:70%;object-fit:cover;object-position:68% center;display:block"></img>
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,#F5F8FA 30%,rgba(245,248,250,.8) 42%,rgba(245,248,250,0) 56%)"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:110px 48px 130px">
+    <div style="display:inline-flex;align-items:center;gap:10px;padding:7px 14px;background:#E4EFEB;border-radius:999px;font-size:12.5px;font-weight:600;color:#093C5C;margin-bottom:30px">
+      <span style="width:8px;height:8px;border-radius:50%;background:#4ACB78;animation:pulseDot 2.4s ease-in-out infinite"></span>
+      Grant-backed development program · Team and pilot network now forming
+    </div>
+    <h1 style="margin:0;font-size:76px;line-height:1.02;font-weight:700;letter-spacing:-.025em;color:#093C5C;max-width:560px"><span style="display:block">Move.</span><span style="display:block">Measure.</span><span style="display:block;background:linear-gradient(90deg,#093C5C,#28ABE3 55%,#4ACB78);-webkit-background-clip:text;background-clip:text;color:transparent">Change.</span></h1>
+    <p style="margin:30px 0 0;font-size:22px;font-weight:600;font-style:italic;color:#28ABE3;letter-spacing:.01em">Cities in motion. Air under control.</p>
+    <p style="margin:14px 0 0;font-size:17px;line-height:1.6;color:#667984;max-width:460px;text-wrap:pretty">We turned the city into a sensor. ADAM is a mobile, AI-driven air monitoring system in development by AerVigil — designed to ride on partner vehicles and read the air street by street.</p>
+    <div style="display:flex;gap:14px;margin-top:38px">
+      <a href="#demo" style="display:inline-block;white-space:nowrap;padding:14px 26px;background:#093C5C;color:#F5F8FA;border-radius:6px;font-size:15px;font-weight:600" style-hover="background:#28ABE3;color:#071F2E">See it in action</a>
+      <a href="#solution" style="display:inline-block;white-space:nowrap;padding:14px 26px;border:1.5px solid #093C5C;color:#093C5C;border-radius:6px;font-size:15px;font-weight:600" style-hover="background:#E7EEF2;color:#093C5C">How ADAM works</a>
+    </div>
+  </div>
+</header>
+
+<section id="problem" data-screen-label="Problem" style="position:relative;background:linear-gradient(180deg,#093C5C,#071F2E);color:#F5F8FA;overflow:hidden">
+  <img src="assets/polluted-city.jpg" alt="" style="position:absolute;top:0;right:0;width:62%;height:100%;object-fit:cover;object-position:center 30%;opacity:.28;display:block;mask-image:linear-gradient(90deg,transparent,rgba(0,0,0,.9) 55%)"></img>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,60,92,.3),rgba(7,31,46,.55))"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:72px 48px 64px">
+    <p style="margin:0 0 12px;font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#28ABE3">The problem</p>
+    <h2 style="margin:0;font-size:46px;font-weight:600;letter-spacing:-.02em;max-width:640px;line-height:1.12">You can't fix what you can't measure.</h2>
+    <div style="margin-top:32px;max-width:860px;border-top:1px solid rgba(231,238,242,.18)">
+      <div style="display:grid;grid-template-columns:210px 1fr;gap:28px;align-items:center;padding:20px 0;border-bottom:1px solid rgba(231,238,242,.18)">
+        <div style="font-size:82px;line-height:.95;font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:#F5F8FA">330K+</div>
+        <p style="margin:0;font-size:18px;line-height:1.45;color:#F5F8FA;font-weight:500;text-wrap:pretty"><span style="color:#F5F8FA;font-weight:700">Premature deaths</span> per year from air pollution in Europe — the single largest environmental health risk on the continent.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:210px 1fr;gap:28px;align-items:baseline;padding:13px 0;border-bottom:1px solid rgba(231,238,242,.14)">
+        <div style="font-size:30px;font-weight:600;font-variant-numeric:tabular-nums;color:#F5F8FA">95%</div>
+        <p style="margin:0;font-size:14.5px;line-height:1.5;color:#9FB4BF">Of urban Europeans exposed to <span style="color:#F5F8FA;font-weight:600">unsafe air pollutant levels</span></p>
+      </div>
+      <div style="display:grid;grid-template-columns:210px 1fr;gap:28px;align-items:baseline;padding:13px 0;border-bottom:1px solid rgba(231,238,242,.14)">
+        <div style="font-size:30px;font-weight:600;font-variant-numeric:tabular-nums;color:#F5F8FA">50K</div>
+        <p style="margin:0;font-size:14.5px;line-height:1.5;color:#9FB4BF">EU companies required to report <span style="color:#F5F8FA;font-weight:600">verified air data under CSRD</span> from 2025</p>
+      </div>
+      <div style="display:grid;grid-template-columns:210px 1fr;gap:28px;align-items:baseline;padding:13px 0;border-bottom:1px solid rgba(231,238,242,.14)">
+        <div style="font-size:30px;font-weight:600;font-variant-numeric:tabular-nums;color:#F5F8FA">5–10%</div>
+        <p style="margin:0;font-size:14.5px;line-height:1.5;color:#9FB4BF">Of city area covered by stationary stations — at <span style="color:#F5F8FA;font-weight:600">€50,000–€150,000 each</span>, dense networks are financially impossible</p>
+      </div>
+      <div style="display:grid;grid-template-columns:210px 1fr;gap:28px;align-items:baseline;padding:13px 0;border-bottom:1px solid rgba(231,238,242,.14)">
+        <div style="font-size:19px;font-weight:600;color:#F5F8FA">Directive 2024</div>
+        <p style="margin:0;font-size:14.5px;line-height:1.5;color:#9FB4BF">The new EU Air Quality Directive sets stricter limits — <span style="color:#F5F8FA;font-weight:600">cities compliant yesterday are in violation today</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="solution" data-screen-label="Solution ADAM" style="background:#F5F8FA">
+  <div style="max-width:1240px;margin:0 auto;padding:104px 48px 40px">
+    <div style="display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center">
+      <div>
+        <p style="margin:0 0 14px;font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#28ABE3">The solution</p>
+        <h2 style="margin:0;font-size:46px;font-weight:600;letter-spacing:-.02em;line-height:1.12;color:#093C5C"><span style="display:block">ADAM — AI-Driven</span><span style="display:block">Air Monitoring</span></h2>
+        <p style="margin:24px 0 0;font-size:17px;line-height:1.65;color:#667984;text-wrap:pretty">ADAM is a mobile AI-driven air quality monitoring system that turns partner vehicle fleets — taxis, delivery and logistics — into a network of street-level sensors, giving cities full real-time coverage at a fraction of the cost of stationary stations.</p>
+        <div style="display:flex;gap:32px;margin-top:34px">
+          <div style="border-top:2px solid #28ABE3;padding-top:12px;flex:1">
+            <div style="font-size:14px;font-weight:600;color:#093C5C">Rooftop unit</div>
+            <p style="margin:6px 0 0;font-size:13.5px;line-height:1.55;color:#667984">Standard roof-box mounting, powered by the vehicle, ~1 hour install</p>
+          </div>
+          <div style="border-top:2px solid #4ACB78;padding-top:12px;flex:1">
+            <div style="font-size:14px;font-weight:600;color:#093C5C">Modular sensing</div>
+            <p style="margin:6px 0 0;font-size:13.5px;line-height:1.55;color:#667984">Particulate matter, NO₂ and O₃ first — new modules can be added later</p>
+          </div>
+        </div>
+      </div>
+      <figure style="margin:0;background:linear-gradient(160deg,#FFFFFF,#E7EEF2);border:1px solid #E7EEF2;border-radius:10px;padding:24px;box-shadow:0 24px 60px -30px rgba(9,60,92,.25)">
+        <img src="assets/adam-hardware-closed.jpg" alt="ADAM rooftop sensing unit — studio render of the closed enclosure" style="width:100%;display:block;border-radius:6px"></img>
+        <figcaption style="display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;font-size:12px;color:#667984;font-family:ui-monospace,Menlo,monospace">
+          <span>ADAM unit · enclosure prototype</span>
+          <span style="color:#28ABE3">in development</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="how" data-screen-label="How it works" style="background:#E7EEF2">
+  <div style="max-width:1240px;margin:0 auto;padding:88px 48px 96px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px">
+      <h2 style="margin:0;font-size:34px;font-weight:600;letter-spacing:-.015em;color:#093C5C">How it works</h2>
+      <p style="margin:0;font-size:14px;color:#667984;max-width:380px;text-align:right">One continuous route: from a partner vehicle to a decision a city can act on.</p>
+    </div>
+    <div style="position:relative;margin-top:56px">
+      <svg viewBox="0 0 1144 88" preserveAspectRatio="none" style="position:absolute;top:0;left:60px;width:calc(100% - 120px);height:88px;overflow:visible">
+        <defs><linearGradient id="adamRouteGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#093C5C"></stop><stop offset=".55" stop-color="#28ABE3"></stop><stop offset="1" stop-color="#4ACB78"></stop></linearGradient></defs>
+        <path id="adamRoutePath" d="M0,44 C70,10 150,10 229,44 S 380,80 458,44 S 610,10 687,44 S 838,80 916,44 S 1080,12 1144,44" fill="none" stroke="url(#adamRouteGrad)" stroke-width="2.5" stroke-dasharray="8 8" style="animation:routeDash 1.6s linear infinite"></path>
+        <circle r="5" fill="#28ABE3">
+          <animateMotion dur="7s" repeatCount="indefinite" rotate="0"><mpath href="#adamRoutePath"></mpath></animateMotion>
+        </circle>
+      </svg>
+      <div style="position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:24px">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+          <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px">
+            <div style="width:88px;height:88px;border-radius:50%;background:#FFFFFF;border:1.5px solid #E7EEF2;box-shadow:0 10px 26px -14px rgba(9,60,92,.35);display:flex;align-items:center;justify-content:center">
+              {{ s.iconEl }}
+            </div>
+            <div style="font-size:11.5px;font-weight:600;letter-spacing:.16em;color:#28ABE3;font-variant-numeric:tabular-nums">{{ s.num }}</div>
+            <div style="font-size:16px;font-weight:600;color:#093C5C;margin-top:-8px">{{ s.title }}</div>
+            <p style="margin:0;font-size:13px;line-height:1.55;color:#667984;max-width:200px">{{ s.body }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why" data-screen-label="Why ADAM" style="background:#E4EFEB">
+  <div style="max-width:1240px;margin:0 auto;padding:96px 48px 104px">
+    <p style="margin:0 0 14px;font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#093C5C;opacity:.6">Why ADAM</p>
+    <h2 style="margin:0 0 12px;font-size:40px;font-weight:600;letter-spacing:-.02em;color:#093C5C">Six reasons this changes the map</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px">
+      <sc-for list="{{ advantages }}" as="a" hint-placeholder-count="6">
+        <div style="display:flex;gap:22px;align-items:flex-start;background:#FFFFFF;border:1px solid rgba(9,60,92,.08);border-radius:10px;padding:28px 28px 26px;box-shadow:0 14px 34px -24px rgba(9,60,92,.3)" style-hover="box-shadow:0 20px 44px -22px rgba(9,60,92,.4)">
+          <div style="flex-shrink:0;width:64px;height:64px;border-radius:12px;background:#F5F8FA;border:1px solid #E7EEF2;display:flex;align-items:center;justify-content:center">{{ a.iconEl }}</div>
+          <div>
+            <div style="display:flex;align-items:baseline;gap:10px">
+              <span style="font-size:12px;font-weight:600;color:#4ACB78;font-variant-numeric:tabular-nums">{{ a.num }}</span>
+              <span style="font-size:18px;font-weight:600;color:#093C5C">{{ a.title }}</span>
+            </div>
+            <p style="margin:8px 0 0;font-size:14px;line-height:1.6;color:#667984;text-wrap:pretty">{{ a.body }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="demo" data-screen-label="See it in action" style="background:#071F2E;color:#F5F8FA">
+  <div style="max-width:1240px;margin:0 auto;padding:104px 48px">
+    <div style="display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center">
+      <div>
+        <p style="margin:0 0 14px;font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#28ABE3">See it in action</p>
+        <h2 style="margin:0;font-size:40px;font-weight:600;letter-spacing:-.02em;line-height:1.15"><span style="display:block">The whole city,</span><span style="display:block">one living map.</span></h2>
+        <p style="margin:22px 0 0;font-size:16px;line-height:1.65;color:#9FB4BF;text-wrap:pretty">Vehicles, routes and measurement points resolve into a street-level air quality layer — refreshed as the fleet moves, readable at a glance with the EU air quality index.</p>
+        <a href="https://adam.aervigil.com" style="display:inline-block;white-space:nowrap;margin-top:30px;padding:14px 26px;background:#28ABE3;color:#071F2E;border-radius:6px;font-size:15px;font-weight:600" style-hover="background:#4ACB78;color:#071F2E">Open the visual demo</a>
+        <p style="margin:18px 0 0;font-size:12.5px;line-height:1.55;color:#667984;font-family:ui-monospace,Menlo,monospace;max-width:360px">Illustrative demo with simulated data — not a live deployment or certified measurement result.</p>
+      </div>
+      <figure style="margin:0;border:1px solid rgba(40,171,227,.25);border-radius:10px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.6)">
+        <img src="assets/adam-kyiv-illustrative-demo.png" alt="ADAM Kyiv demo interface — simulated air quality heat layer over a city map" style="width:100%;display:block"></img>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="network" data-screen-label="Build the network" style="position:relative;background:#FFFFFF;overflow:hidden;border-bottom:1px solid #E7EEF2">
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:96px 48px 90px">
+    <p style="margin:0 0 12px;font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#28ABE3">Build the first network with us</p>
+    <h2 style="margin:0;font-size:42px;font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#093C5C;max-width:640px">Existing routes can become shared environmental infrastructure.</h2>
+    <div style="display:grid;grid-template-columns:1fr 220px 1fr;gap:32px;margin-top:56px;align-items:start">
+      <div style="display:flex;gap:26px;align-items:flex-start">
+        <img src="assets/icons/audiences/cities-public-agencies-clean.png" alt="Line drawing of a civic building with a measurement route" style="width:150px;height:150px;object-fit:contain;flex-shrink:0;display:block;mix-blend-mode:multiply"></img>
+        <div>
+          <h3 style="margin:0;font-size:21px;font-weight:600;color:#093C5C">For cities</h3>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px">
+            <div style="display:flex;gap:10px;align-items:baseline"><span style="color:#28ABE3;font-weight:700">✓</span><span style="font-size:15px;color:#42586A;line-height:1.5">Understand street-level patterns</span></div>
+            <div style="display:flex;gap:10px;align-items:baseline"><span style="color:#28ABE3;font-weight:700">✓</span><span style="font-size:15px;color:#42586A;line-height:1.5">Improve planning and operations</span></div>
+            <div style="display:flex;gap:10px;align-items:baseline"><span style="color:#28ABE3;font-weight:700">✓</span><span style="font-size:15px;color:#42586A;line-height:1.5">Support policies with better evidence</span></div>
+            <div style="display:flex;gap:10px;align-items:baseline"><span style="color:#28ABE3;font-weight:700">✓</span><span style="font-size:15px;color:#42586A;line-height:1.5">Communicate with confidence</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="position:relative;align-self:stretch;min-height:260px;display:flex;flex-direction:column;align-items:center">
+        <div style="display:flex;gap:22px">
+          <span style="width:22px;height:22px;border-radius:50%;border:3px solid #28ABE3;display:flex;align-items:center;justify-content:center"><span style="width:9px;height:9px;border-radius:50%;background:#28ABE3"></span></span>
+          <span style="width:22px;height:22px;border-radius:50%;border:3px solid #4ACB78;display:flex;align-items:center;justify-content:center"><span style="width:9px;height:9px;border-radius:50%;background:#4ACB78"></span></span>
+        </div>
+        <svg viewBox="0 0 220 300" preserveAspectRatio="none" style="flex:1;width:220px;min-height:0;display:block;overflow:visible;margin-top:4px">
+          <path d="M88,0 L88,90 C88,110 100,118 106,136 C110,148 110,160 110,180 L110,300" fill="none" stroke="#28ABE3" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 9" vector-effect="non-scaling-stroke" style="animation:routeDash 1.8s linear infinite"></path>
+          <path d="M132,0 L132,80 C132,104 118,112 112,132 C109,144 110,158 110,178" fill="none" stroke="#4ACB78" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 9" vector-effect="non-scaling-stroke" style="animation:routeDash 1.8s linear infinite"></path>
+        </svg>
+      </div>
+      <div style="display:flex;gap:26px;align-items:flex-start">
+        <img src="assets/icons/audiences/industry-logistics-clean.png" alt="Line drawing of a delivery van leaving a depot on a measurement route" style="width:150px;height:150px;object-fit:contain;flex-shrink:0;display:block;mix-blend-mode:multiply"></img>
+        <div>
+          <h3 style="margin:0;font-size:21px;font-weight:600;color:#093C5C">For fleet operators</h3>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px">
+            <div style="display:flex;gap:10px;align-items:baseline"><span style="color:#4ACB78;font-weight:700">✓</span><span style="font-size:15px;color:#42586A;line-height:1.5">Use routes you already run</span></div>
+            <div style="display:flex;gap:10px;align-items:baseline"><span style="color:#4ACB78;font-weight:700">✓</span><span style="font-size:15px;color:#42586A;line-height:1.5">Low-disruption, easy installation</span></div>
+            <div style="display:flex;gap:10px;align-items:baseline"><span style="color:#4ACB78;font-weight:700">✓</span><span style="font-size:15px;color:#42586A;line-height:1.5">Designed for passenger cars and vans</span></div>
+            <div style="display:flex;gap:10px;align-items:baseline"><span style="color:#4ACB78;font-weight:700">✓</span><span style="font-size:15px;color:#42586A;line-height:1.5">Contribute to a cleaner, healthier city</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;margin-top:-6px">
+      <a href="#contact" style="display:inline-block;white-space:nowrap;padding:14px 28px;background:#093C5C;color:#F5F8FA;border-radius:6px;font-size:15px;font-weight:600;position:relative;z-index:1" style-hover="background:#28ABE3;color:#071F2E">Discuss a pilot →</a>
+    </div>
+  </div>
+</section>
+
+<section id="company" data-screen-label="Who we are" style="background:#F5F8FA">
+  <div style="max-width:1240px;margin:0 auto;padding:104px 48px 96px">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:56px">
+      <div>
+        <p style="margin:0 0 14px;font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#28ABE3">Our mission</p>
+        <p style="margin:0;font-size:20px;line-height:1.5;font-weight:500;color:#093C5C;text-wrap:pretty">Make street-level air quality as visible — and as actionable — as traffic. Every street, every neighborhood, every hour.</p>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#28ABE3">Team</p>
+        <p style="margin:0;font-size:15px;line-height:1.65;color:#667984;text-wrap:pretty">AerVigil is assembling a team across sensing hardware, machine learning and urban data — building ADAM through a funded development program with pilot conversations under way.</p>
+        <p style="margin:14px 0 0;font-size:13px;font-weight:600;font-style:italic;color:#4ACB78">Team and pilot network now forming →</p>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#28ABE3">Backed by</p>
+        <img src="assets/eu-funded-light.png" alt="Funded by the European Union" style="height:52px;display:block"></img>
+        <p style="margin:16px 0 0;font-size:13.5px;line-height:1.6;color:#667984;text-wrap:pretty">ADAM received Horizon Europe / European Innovation Council support through a program for Ukrainian technology SMEs and startups.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ showNews }}" hint-placeholder-val="{{ true }}">
+<section id="news" data-screen-label="News" style="background:#FFFFFF;border-top:1px solid #E7EEF2">
+  <div style="max-width:1240px;margin:0 auto;padding:72px 48px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline">
+      <h2 style="margin:0;font-size:28px;font-weight:600;letter-spacing:-.015em;color:#093C5C">News</h2>
+      <a href="#news" style="font-size:14px;font-weight:600;color:#28ABE3">All news →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:32px">
+      <article style="border-top:2px solid #4ACB78;padding-top:16px">
+        <time style="font-size:12px;font-weight:600;color:#667984;font-variant-numeric:tabular-nums">2026</time>
+        <h3 style="margin:8px 0 0;font-size:16.5px;font-weight:600;line-height:1.4;color:#093C5C">ADAM receives Horizon Europe / EIC support for Ukrainian tech startups</h3>
+      </article>
+      <article style="border-top:2px solid #E7EEF2;padding-top:16px">
+        <time style="font-size:12px;font-weight:600;color:#667984;font-variant-numeric:tabular-nums">2026</time>
+        <h3 style="margin:8px 0 0;font-size:16.5px;font-weight:600;line-height:1.4;color:#667984;font-family:ui-monospace,Menlo,monospace;font-size:13.5px">[ upcoming: pilot program announcement ]</h3>
+      </article>
+      <article style="border-top:2px solid #E7EEF2;padding-top:16px">
+        <time style="font-size:12px;font-weight:600;color:#667984;font-variant-numeric:tabular-nums">2026</time>
+        <h3 style="margin:8px 0 0;font-size:16.5px;font-weight:600;line-height:1.4;color:#667984;font-family:ui-monospace,Menlo,monospace;font-size:13.5px">[ upcoming: hardware development update ]</h3>
+      </article>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<section id="contact" data-screen-label="Contact CTA" style="background:linear-gradient(180deg,#093C5C,#071F2E);color:#F5F8FA;position:relative;overflow:hidden">
+  <div style="max-width:1240px;margin:0 auto;padding:110px 48px 96px;text-align:center;position:relative">
+    <h2 style="margin:0;font-size:48px;font-weight:700;letter-spacing:-.02em;line-height:1.1">Put your city in motion.</h2>
+    <p style="margin:20px auto 0;font-size:17px;line-height:1.6;color:#9FB4BF;max-width:520px;text-wrap:pretty">Cities, fleets, industry, researchers — if street-level air intelligence matters to you, let's talk.</p>
+    <a href="mailto:?subject=ADAM%20by%20AerVigil" style="display:inline-block;white-space:nowrap;margin-top:34px;padding:16px 34px;background:linear-gradient(90deg,#28ABE3,#4ACB78);color:#071F2E;border-radius:6px;font-size:16px;font-weight:700" style-hover="filter:brightness(1.08);color:#071F2E">Start a conversation</a>
+  </div>
+
+</section>
+
+<footer data-screen-label="Footer" style="position:relative;overflow:hidden;background:#071F2E;color:#9FB4BF;border-top:1px solid rgba(231,238,242,.1)">
+  <img src="assets/illustrations/footer-skyline.png" alt="" style="position:absolute;left:0;bottom:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;opacity:.14;mix-blend-mode:screen;display:block;filter:brightness(.55)"></img>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,31,46,.7),rgba(7,31,46,.35))"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:56px 48px 40px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:48px;flex-wrap:wrap">
+      <div>
+        <img src="assets/adam-logo-white.svg" alt="ADAM by AerVigil" style="height:32px;display:block"></img>
+        <p style="margin:16px 0 0;font-size:13px;line-height:1.6;max-width:300px;color:#667984">Mobile AI-driven air quality monitoring, in development by AerVigil.</p>
+      </div>
+      <div style="display:flex;gap:64px;font-size:13.5px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#667984">Explore</span>
+          <a href="#solution" style="color:#E7EEF2">Technology</a>
+          <a href="#why" style="color:#E7EEF2">Why ADAM</a>
+          <a href="#demo" style="color:#E7EEF2">Demo</a>
+          <a href="#news" style="color:#E7EEF2">News</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#667984">Connect</span>
+          <a href="https://www.linkedin.com/" style="color:#E7EEF2">LinkedIn</a>
+          <a href="#contact" style="color:#E7EEF2">Contact form</a>
+        </div>
+      </div>
+      <img src="assets/eu-funded-dark.png" alt="Funded by the European Union" style="height:44px;display:block"></img>
+    </div>
+    <p style="margin:40px 0 0;padding-top:20px;border-top:1px solid rgba(231,238,242,.08);font-size:11.5px;line-height:1.6;color:#4A5E69">© 2026 AerVigil · aervigil.com — ADAM is a development program; demo content is illustrative. Funding acknowledgement wording pending final grant-agreement text.</p>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showNews&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Sections&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const steps = [
+      { num: '01', icon: 'assets/icons/process/01-partner-fleet.png', title: 'Partner fleet', body: 'ADAM units mount on the roofs of taxis, delivery and service vehicles already on the road.' },
+      { num: '02', icon: 'assets/icons/process/02-mobile-sensing.png', title: 'Mobile sensing', body: 'Sensors read particulates, NO₂ and O₃ continuously as the vehicle moves — and while parked.' },
+      { num: '03', icon: 'assets/icons/process/03-data-quality.png', title: 'AI validation', body: 'Models cross-check every measurement against context data: location, speed, traffic, weather.' },
+      { num: '04', icon: 'assets/icons/process/04-city-map.png', title: 'City map', body: 'Validated data resolves into a street-level air quality layer covering the whole city.' },
+      { num: '05', icon: 'assets/icons/process/05-reporting.png', title: 'Reporting', body: 'Quality-checked data feeds planning, public health and regulatory reporting workflows.' },
+    ];
+    const advantages = [
+      { num: '01', title: 'Full city coverage', body: 'Vehicles cover 100% of city streets — not just 10 fixed points. Every street, every neighborhood, every hour.' },
+      { num: '02', title: 'AI-validated data', body: 'Up to 96% accuracy on validated direct measurements. Over 100,000 measurements per vehicle per year continuously improve our models.' },
+      { num: '03', title: 'CSRD-ready reports', body: 'Auto-generated ESRS E1/E2 compliant reports accepted by EU regulators, auditors and banks. One click — the report is ready.' },
+      { num: '04', title: '10× more affordable', body: 'One stationary station costs €50,000–€150,000. ADAM covers an entire city via partner fleets at a fraction of that cost.' },
+      { num: '05', title: 'EN 15267-4 path', body: 'Targeting the only standard that makes mobile air quality data legally recognised for regulatory reporting and ESG audits.' },
+      { num: '06', title: 'Asset-light model', body: 'No proprietary fleet required. We partner with existing taxi and logistics operators — rapid deployment, low capital cost.' },
+    ];
+    steps.forEach(s => { s.iconEl = React.createElement('img', { src: s.icon, alt: '', style: { width: 56, height: 56, objectFit: 'contain', display: 'block' } }); });
+    const advIcons = ['assets/icons/capabilities/broader-spatial-context.png', 'assets/icons/capabilities/visible-data-quality.png', 'assets/icons/capabilities/reporting-ready-evidence.svg', 'assets/icons/capabilities/faster-insight.png', 'assets/icons/capabilities/recognized-quality-path.svg', 'assets/icons/capabilities/practical-deployment.png'];
+    advantages.forEach((a, i) => { a.iconEl = React.createElement('img', { src: advIcons[i], alt: '', style: { width: 44, height: 44, objectFit: 'contain', display: 'block' } }); });
+    return { steps, advantages, showNews: this.props.showNews ?? true };
+  }
+}
+</script>
+</body>
+</html>

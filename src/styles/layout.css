@@ -1,0 +1,107 @@
+/** Page shell: container, section bands, shared heading styles. */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+  scroll-margin-top: var(--header-h);
+}
+
+/* Band variants — each maps to one background in the design. */
+.section--surface {
+  background: var(--c-surface);
+  border-top: 1px solid var(--c-line);
+}
+
+.section--mist {
+  background: var(--c-mist);
+}
+
+.section--mint {
+  background: var(--c-mint);
+}
+
+.section--dark {
+  background: linear-gradient(180deg, var(--c-navy), var(--c-deep));
+  color: var(--c-bg);
+  overflow: hidden;
+}
+
+.section--deep {
+  background: var(--c-deep);
+  color: var(--c-bg);
+}
+
+.section--gradient {
+  background: linear-gradient(180deg, var(--c-navy), var(--c-deep));
+  color: var(--c-bg);
+  overflow: hidden;
+}
+
+/* Dark bands invert body copy and links. */
+.section--dark .section__lede,
+.section--deep .section__lede,
+.section--gradient .section__lede {
+  color: var(--c-muted-dark);
+}
+
+.eyebrow {
+  margin-bottom: 0.875rem;
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.eyebrow--cyan {
+  color: var(--c-cyan);
+}
+
+.eyebrow--muted {
+  color: var(--c-navy);
+  opacity: 0.6;
+}
+
+.section__title {
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  max-width: 40ch;
+}
+
+.section__title--lg {
+  font-size: var(--fs-h2-lg);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.section__title--sm {
+  font-size: var(--fs-h2-sm);
+  letter-spacing: -0.015em;
+}
+
+.section__title--xs {
+  font-size: var(--fs-h2-xs);
+  letter-spacing: -0.015em;
+}
+
+.section__title-line {
+  display: block;
+}
+
+.section__lede {
+  margin-top: var(--space-md);
+  max-width: 62ch;
+  font-size: var(--fs-lede);
+  line-height: 1.65;
+  color: var(--c-muted);
+  text-wrap: pretty;
+}

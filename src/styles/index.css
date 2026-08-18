@@ -1,0 +1,11 @@
+/**
+ * Stylesheet entry point. Import order matters: tokens define the variables every
+ * later layer consumes, base sets element defaults, layout builds the page shell,
+ * components are reusable pieces, sections are one-off layouts.
+ */
+
+@import "./tokens.css";
+@import "./base.css";
+@import "./layout.css";
+@import "./components.css";
+@import "./sections.css";

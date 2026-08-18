@@ -1,0 +1,94 @@
+/**
+ * Design tokens — the single place colour, type, spacing and elevation are defined.
+ * Values come from the approved Claude design; see `docs/design-system.md`.
+ */
+
+:root {
+  /* Brand palette */
+  --c-navy: #093c5c; /* Aer Navy — primary ink and primary button */
+  --c-deep: #071f2e; /* Deep navy — darkest sections */
+  --c-cyan: #28abe3; /* Air Cyan — accent, links, eyebrows */
+  --c-green: #4acb78; /* Vigil Green — confirmation, second route */
+
+  /* Surfaces */
+  --c-bg: #f5f8fa; /* Page background */
+  --c-surface: #ffffff; /* Cards and white sections */
+  --c-mist: #e7eef2; /* Light band + hairlines */
+  --c-mint: #e4efeb; /* "Why ADAM" band + hero badge */
+
+  /* Text */
+  --c-ink: var(--c-navy);
+  --c-ink-soft: #42586a;
+  --c-muted: #667984;
+  --c-muted-dark: #9fb4bf; /* Body copy on dark sections */
+  --c-legal: #4a5e69;
+
+  /* Hairlines */
+  --c-line: var(--c-mist);
+  --c-line-dark: rgb(231 238 242 / 18%);
+  --c-line-dark-soft: rgb(231 238 242 / 14%);
+
+  /* Typography */
+  --font-sans: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Fluid type scale: min at 380px viewport, max at 1240px */
+  --fs-hero: clamp(2.75rem, 1.6rem + 5vw, 4.75rem); /* 44 → 76 */
+  --fs-h2-lg: clamp(2rem, 1.35rem + 2.8vw, 3rem); /* 32 → 48 */
+  --fs-h2: clamp(1.75rem, 1.25rem + 2.2vw, 2.875rem); /* 28 → 46 */
+  --fs-h2-sm: clamp(1.5rem, 1.2rem + 1.2vw, 2.125rem); /* 24 → 34 */
+  --fs-h2-xs: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem); /* 22 → 28 */
+  --fs-h3: 1.3125rem; /* 21 */
+  --fs-lede: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem); /* 16 → 17 */
+  --fs-body: 0.9375rem; /* 15 */
+  --fs-sm: 0.875rem; /* 14 */
+  --fs-xs: 0.8125rem; /* 13 */
+  --fs-2xs: 0.75rem; /* 12 */
+  --fs-eyebrow: 0.78125rem; /* 12.5 */
+
+  /* Spacing */
+  --space-2xs: 0.375rem;
+  --space-xs: 0.625rem;
+  --space-sm: 0.875rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3.5rem;
+  --space-2xl: 5rem;
+
+  /* Section rhythm — collapses on small screens via the media query below */
+  --section-y: 6.5rem;
+  --section-y-sm: 4.5rem;
+
+  /* Layout */
+  --container: 77.5rem; /* 1240px */
+  --gutter: 3rem; /* 48px */
+
+  /* Radii */
+  --radius-sm: 0.375rem; /* 6px — buttons, images inside cards */
+  --radius-md: 0.625rem; /* 10px — cards, figures */
+  --radius-lg: 0.75rem; /* 12px — icon tiles */
+  --radius-pill: 999px;
+
+  /* Elevation */
+  --shadow-card: 0 14px 34px -24px rgb(9 60 92 / 30%);
+  --shadow-card-hover: 0 20px 44px -22px rgb(9 60 92 / 40%);
+  --shadow-figure: 0 24px 60px -30px rgb(9 60 92 / 25%);
+  --shadow-badge: 0 10px 26px -14px rgb(9 60 92 / 35%);
+  --shadow-dark: 0 30px 80px -30px rgb(0 0 0 / 60%);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 160ms;
+  --dur-slow: 620ms;
+
+  /* Header height, used for scroll-margin so anchors clear the sticky bar */
+  --header-h: 4.25rem;
+}
+
+@media (width <= 48rem) {
+  :root {
+    --gutter: 1.25rem;
+    --section-y: 3.75rem;
+    --section-y-sm: 3rem;
+  }
+}

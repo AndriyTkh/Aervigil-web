@@ -1,0 +1,465 @@
+/** Reusable pieces: buttons, header, navigation, footer and the route graphics. */
+
+/* ---------------------------------------------------------------- buttons -- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.625rem;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    filter var(--dur-fast) var(--ease-out);
+}
+
+.btn--sm {
+  padding: 0.625rem 1.25rem;
+  font-size: var(--fs-sm);
+}
+
+.btn--primary {
+  background: var(--c-navy);
+  color: var(--c-bg);
+}
+
+.btn--primary:hover {
+  background: var(--c-cyan);
+  color: var(--c-deep);
+}
+
+.btn--ghost {
+  border-color: var(--c-navy);
+  color: var(--c-navy);
+}
+
+.btn--ghost:hover {
+  background: var(--c-mist);
+  color: var(--c-navy);
+}
+
+.btn--accent {
+  background: var(--c-cyan);
+  color: var(--c-deep);
+}
+
+.btn--accent:hover {
+  background: var(--c-green);
+  color: var(--c-deep);
+}
+
+.btn--gradient {
+  padding: 1rem 2.125rem;
+  background: linear-gradient(90deg, var(--c-cyan), var(--c-green));
+  color: var(--c-deep);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.btn--gradient:hover {
+  color: var(--c-deep);
+  filter: brightness(1.08);
+}
+
+/* ----------------------------------------------------------------- header -- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgb(245 248 250 / 92%);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--c-line);
+  transition: box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.site-header.is-scrolled {
+  box-shadow: 0 8px 24px -20px rgb(9 60 92 / 55%);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: 0.875rem var(--gutter);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.brand__logo {
+  height: 2.125rem;
+}
+
+.brand__lockup {
+  padding-left: 0.75rem;
+  border-left: 1px solid var(--c-line);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.site-nav__list {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.site-nav__link {
+  color: var(--c-navy);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+
+.site-nav__link:hover {
+  color: var(--c-cyan);
+}
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  background: transparent;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--c-navy);
+  cursor: pointer;
+}
+
+.menu-toggle__bars,
+.menu-toggle__bars::before,
+.menu-toggle__bars::after {
+  display: block;
+  width: 1rem;
+  height: 2px;
+  background: currentcolor;
+  border-radius: 2px;
+}
+
+.menu-toggle__bars {
+  position: relative;
+}
+
+.menu-toggle__bars::before,
+.menu-toggle__bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.menu-toggle__bars::before {
+  top: -5px;
+}
+
+.menu-toggle__bars::after {
+  top: 5px;
+}
+
+.site-nav__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgb(7 31 46 / 45%);
+  border: 0;
+  cursor: pointer;
+}
+
+@media (width <= 62rem) {
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  /* Anchored to the sticky header rather than the viewport: the header's
+     backdrop-filter makes it the containing block for fixed children anyway. */
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-md);
+    padding: var(--space-lg) var(--gutter) var(--space-xl);
+    background: var(--c-surface);
+    border-bottom: 1px solid var(--c-line);
+    box-shadow: var(--shadow-figure);
+    transform: translateY(-8px);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out),
+      visibility var(--dur-fast);
+  }
+
+  .site-nav.is-open {
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .site-nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .site-nav__list li + li {
+    border-top: 1px solid var(--c-line);
+  }
+
+  .site-nav__link {
+    display: block;
+    padding: 0.875rem 0;
+    font-size: 1.0625rem;
+  }
+}
+
+/* ------------------------------------------------------------ route lines -- */
+
+/* The pulse paths carry `pathLength="100"`, so one period is exactly -100:
+   the dash pattern wraps at the loop boundary instead of snapping back. */
+@keyframes route-travel {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.4;
+  }
+}
+
+.route-line {
+  position: absolute;
+  top: 0;
+  left: 3.75rem;
+  width: calc(100% - 7.5rem);
+  height: 5.5rem;
+  overflow: visible;
+}
+
+.route-line__path {
+  opacity: 0.6;
+}
+
+.route-line__pulse {
+  filter: drop-shadow(0 0 6px rgb(40 171 227 / 45%));
+  animation: route-travel 6s linear infinite;
+}
+
+.route-junction {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  min-height: 16rem;
+}
+
+.route-junction__heads {
+  display: flex;
+  gap: 1.375rem;
+}
+
+.route-junction__head {
+  display: block;
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  border: 3px solid currentcolor;
+}
+
+.route-junction__head::after {
+  content: "";
+  display: block;
+  width: 0.5625rem;
+  height: 0.5625rem;
+  margin: 0.25rem;
+  border-radius: 50%;
+  background: currentcolor;
+}
+
+.route-junction__head--cyan {
+  color: var(--c-cyan);
+}
+
+.route-junction__head--green {
+  color: var(--c-green);
+}
+
+.route-junction__svg {
+  flex: 1;
+  width: 13.75rem;
+  min-height: 0;
+  margin-top: 0.25rem;
+  overflow: visible;
+}
+
+.route-junction__path {
+  opacity: 0.5;
+}
+
+/* Offset durations so the two feeds read as independent, not as one signal. */
+.route-junction__pulse--city {
+  animation: route-travel 5.2s linear infinite;
+}
+
+.route-junction__pulse--fleet {
+  animation: route-travel 4.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-line__pulse,
+  .route-junction__pulse {
+    display: none;
+  }
+
+  /* Nothing is travelling, so the static route carries the section on its own. */
+  .route-line__path,
+  .route-junction__path {
+    opacity: 0.7;
+  }
+}
+
+/* ----------------------------------------------------------------- footer -- */
+
+.site-footer {
+  position: relative;
+  overflow: hidden;
+  background: var(--c-deep);
+  color: var(--c-muted-dark);
+  border-top: 1px solid rgb(231 238 242 / 10%);
+}
+
+.site-footer__skyline {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  opacity: 0.14;
+  mix-blend-mode: screen;
+  filter: brightness(0.55);
+}
+
+.site-footer__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(7 31 46 / 70%), rgb(7 31 46 / 35%));
+}
+
+.site-footer__inner {
+  position: relative;
+  padding-block: var(--space-xl) var(--space-lg);
+}
+
+.site-footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-xl);
+}
+
+.site-footer__logo {
+  height: 2rem;
+}
+
+.site-footer__tagline {
+  margin-top: 1rem;
+  max-width: 19rem;
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+.site-footer__groups {
+  display: flex;
+  gap: 4rem;
+}
+
+.site-footer__group ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-top: 0.625rem;
+  font-size: 0.84375rem;
+}
+
+.site-footer__group a {
+  color: var(--c-mist);
+}
+
+.site-footer__group a:hover {
+  color: var(--c-cyan);
+}
+
+.site-footer__group-title {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+.site-footer__eu {
+  height: 2.75rem;
+}
+
+.site-footer__legal {
+  margin-top: var(--space-lg);
+  padding-top: 1.25rem;
+  border-top: 1px solid rgb(231 238 242 / 8%);
+  font-size: 0.71875rem;
+  line-height: 1.6;
+  color: var(--c-legal);
+}
+
+@media (width <= 34rem) {
+  .site-footer__groups {
+    gap: var(--space-lg);
+  }
+}
