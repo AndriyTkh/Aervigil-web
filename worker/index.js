@@ -7,12 +7,23 @@
  */
 const DISCONNECTED_ROUTES = new Map([["/technology", "/"]]);
 
+/** Matches a disconnected route and anything nested under it, ignoring trailing slashes. */
+function disconnectedTarget(pathname) {
+  const normalized = pathname.replace(/\/+$/, "") || "/";
+  for (const [route, target] of DISCONNECTED_ROUTES) {
+    if (normalized === route || normalized.startsWith(`${route}/`)) {
+      return target;
+    }
+  }
+  return undefined;
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
     if (["GET", "HEAD"].includes(request.method)) {
-      const target = DISCONNECTED_ROUTES.get(url.pathname.replace(/\/+$/, "") || "/");
+      const target = disconnectedTarget(url.pathname);
       if (target) {
         return Response.redirect(new URL(target, url), 307);
       }

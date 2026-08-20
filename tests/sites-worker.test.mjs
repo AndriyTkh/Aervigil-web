@@ -62,7 +62,7 @@ test("does not turn missing API or write requests into the app shell", async () 
 });
 
 test("redirects a disconnected route instead of serving the app shell", async () => {
-  for (const path of ["/technology", "/technology/"]) {
+  for (const path of ["/technology", "/technology/", "/technology/hardware"]) {
     let calls = 0;
     const response = await worker.fetch(
       new Request(`https://example.test${path}`, { headers: { accept: "text/html" } }),
