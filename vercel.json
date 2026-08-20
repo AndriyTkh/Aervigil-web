@@ -12,17 +12,7 @@
       "permanent": true
     },
     {
-      "source": "/technology",
-      "destination": "/",
-      "permanent": false
-    },
-    {
-      "source": "/technology/",
-      "destination": "/",
-      "permanent": false
-    },
-    {
-      "source": "/technology/:path*",
+      "source": "/technology(/.*)?",
       "destination": "/",
       "permanent": false
     }
