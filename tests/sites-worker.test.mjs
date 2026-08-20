@@ -61,6 +61,27 @@ test("does not turn missing API or write requests into the app shell", async () 
   }
 });
 
+test("redirects a disconnected route instead of serving the app shell", async () => {
+  for (const path of ["/technology", "/technology/"]) {
+    let calls = 0;
+    const response = await worker.fetch(
+      new Request(`https://example.test${path}`, { headers: { accept: "text/html" } }),
+      {
+        ASSETS: {
+          fetch: async () => {
+            calls += 1;
+            return new Response("missing", { status: 404 });
+          },
+        },
+      },
+    );
+
+    assert.equal(response.status, 307);
+    assert.equal(response.headers.get("location"), "https://example.test/");
+    assert.equal(calls, 0, `${path} should not reach the asset binding`);
+  }
+});
+
 test("emits the files required by Sites packaging", async () => {
   await access(new URL("../dist/client/index.html", import.meta.url));
   await access(new URL("../dist/server/index.js", import.meta.url));

@@ -31,8 +31,12 @@ To change wording, edit `site.ts`. Nothing else needs touching.
 The page is not part of the build: `App.tsx` no longer routes `/technology` and
 `src/styles/index.css` no longer imports `technology.css`, so the `Technology` nav and
 footer links point at the homepage `#solution` anchor instead. Source, copy
-(`site.technology`) and styles are kept so it can be reconnected. The mapping below
-describes the page as it stood when it was live.
+(`site.technology`) and styles are kept so it can be reconnected. Because both hosts
+rewrite unknown paths to `index.html`, `/technology` would otherwise answer 200 with the
+homepage, so it is redirected to `/` — temporarily (307) in
+[`vercel.json`](../vercel.json) and `DISCONNECTED_ROUTES` in
+[`worker/index.js`](../worker/index.js). The mapping below describes the page as it stood
+when it was live.
 
 [TechnologyPage](../src/components/pages/TechnologyPage.tsx) is one continuous
 measurement chain with exactly three anchored sections. Page copy and interface labels

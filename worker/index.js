@@ -1,5 +1,23 @@
+/**
+ * Routes whose page is not part of the current build. Without this the
+ * index.html fallback below would answer them with 200 and the homepage, so a
+ * disconnected URL would silently serve the wrong page. Redirects are temporary
+ * (307) because these pages are expected to come back — drop the entry when its
+ * page is reconnected.
+ */
+const DISCONNECTED_ROUTES = new Map([["/technology", "/"]]);
+
 export default {
   async fetch(request, env) {
+    const url = new URL(request.url);
+
+    if (["GET", "HEAD"].includes(request.method)) {
+      const target = DISCONNECTED_ROUTES.get(url.pathname.replace(/\/+$/, "") || "/");
+      if (target) {
+        return Response.redirect(new URL(target, url), 307);
+      }
+    }
+
     const response = await env.ASSETS.fetch(request);
     const acceptsHtml = request.headers.get("accept")?.includes("text/html");
 

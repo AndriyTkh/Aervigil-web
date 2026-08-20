@@ -67,7 +67,9 @@ deeper detail lives in [docs/](docs/).
 ## Technology page decisions (page currently disconnected)
 
 - `/technology` is not routed or styled in the build; the component, copy and CSS are kept
-  for a future reconnect. The decisions below apply if it is brought back.
+  for a future reconnect. The URL redirects to `/` (307) via `vercel.json` and
+  `DISCONNECTED_ROUTES` in `worker/index.js` — remove both entries when reconnecting, or
+  the redirect will shadow the page. The decisions below apply if it is brought back.
 - `/technology` has exactly three anchored product sections: Hardware, Software and Data
   analytics. The page intro belongs to Hardware rather than adding a fourth section.
 - `public/assets/illustrations/ADAM ass(1).JPG` is the primary Hardware visual and must

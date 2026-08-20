@@ -10,6 +10,11 @@
       "has": [{ "type": "host", "value": "www.aervigil.com" }],
       "destination": "https://aervigil.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/technology",
+      "destination": "/",
+      "permanent": false
     }
   ],
   "rewrites": [
