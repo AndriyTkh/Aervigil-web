@@ -1,10 +1,8 @@
 import { site } from "../../content/site";
 import { Eyebrow } from "../ui/Eyebrow";
-import { RouteJunction } from "../ui/RouteJunction";
 
 export function NetworkSection() {
   const { network } = site;
-  const [cities, fleets] = network.audiences;
 
   return (
     <section className="section section--surface network" id="network" aria-labelledby="network-title">
@@ -15,9 +13,9 @@ export function NetworkSection() {
         </h2>
 
         <div className="network__grid">
-          <AudienceCard audience={cities} />
-          <RouteJunction />
-          <AudienceCard audience={fleets} />
+          {network.audiences.map((audience) => (
+            <AudienceCard key={audience.id} audience={audience} />
+          ))}
         </div>
 
         <div className="network__cta">
@@ -30,22 +28,18 @@ export function NetworkSection() {
   );
 }
 
+/** Teaser card: the full challenge/solution text lives on /solutions. */
 function AudienceCard({ audience }: { audience: (typeof site.network.audiences)[number] }) {
   return (
     <div className={`audience audience--${audience.accent} reveal`}>
       <img className="audience__icon" src={audience.icon} alt={audience.iconAlt} loading="lazy" />
       <div>
+        <p className="audience__sector">{audience.sector}</p>
         <h3 className="audience__title">{audience.title}</h3>
-        <ul className="audience__points">
-          {audience.points.map((point) => (
-            <li key={point}>
-              <span className="audience__tick" aria-hidden="true">
-                ✓
-              </span>
-              {point}
-            </li>
-          ))}
-        </ul>
+        <p className="audience__copy">{audience.summary}</p>
+        <a className="audience__more" href={`/solutions#${audience.id}`}>
+          {site.network.explore}
+        </a>
       </div>
     </div>
   );

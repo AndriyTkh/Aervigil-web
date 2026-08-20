@@ -59,7 +59,17 @@ a:hover {
   color: var(--c-navy);
 }
 
-button {
+/* Form controls and code elements ship their own UA font; force the brand face
+   everywhere so no text on the page falls back to a system or mono stack. */
+button,
+input,
+textarea,
+select,
+optgroup,
+code,
+pre,
+kbd,
+samp {
   font: inherit;
   color: inherit;
 }

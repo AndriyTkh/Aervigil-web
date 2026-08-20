@@ -19,10 +19,7 @@ export function WhyAdamSection() {
                 <img src={advantage.icon} alt="" loading="lazy" />
               </div>
               <div className="advantage__body">
-                <h3 className="advantage__title">
-                  <span className="advantage__num">{advantage.num}</span>
-                  {advantage.title}
-                </h3>
+                <h3 className="advantage__title">{advantage.title}</h3>
                 <p className="advantage__text">{advantage.body}</p>
               </div>
             </li>

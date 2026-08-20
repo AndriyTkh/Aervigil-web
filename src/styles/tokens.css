@@ -30,7 +30,6 @@
 
   /* Typography */
   --font-sans: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   /* Fluid type scale: min at 380px viewport, max at 1240px */
   --fs-hero: clamp(2.75rem, 1.6rem + 5vw, 4.75rem); /* 44 → 76 */

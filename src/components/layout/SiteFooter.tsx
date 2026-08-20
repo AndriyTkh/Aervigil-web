@@ -11,12 +11,18 @@ export function SiteFooter() {
       <div className="container site-footer__inner">
         <div className="site-footer__top">
           <div className="site-footer__brand">
-            <img
-              className="site-footer__logo"
-              src={brand.logoWhite}
-              alt={`${brand.product} ${brand.lockup}`}
-              loading="lazy"
-            />
+            <div className="site-footer__mark">
+              <img
+                className="site-footer__logo"
+                src={brand.logoSignLight}
+                alt=""
+                loading="lazy"
+              />
+              <span className="site-footer__lockup">
+                <span className="site-footer__product">{brand.product}</span>
+                <span className="site-footer__company">{brand.lockup}</span>
+              </span>
+            </div>
             <p className="site-footer__tagline">{footer.tagline}</p>
           </div>
 
@@ -41,13 +47,6 @@ export function SiteFooter() {
               </nav>
             ))}
           </div>
-
-          <img
-            className="site-footer__eu"
-            src={footer.euLogo}
-            alt={footer.euLogoAlt}
-            loading="lazy"
-          />
         </div>
 
         <p className="site-footer__legal">{footer.legal}</p>

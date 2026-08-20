@@ -1,10 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
-  <!-- style A: route with measurement dots toward an unfilled quality badge -->
-  <path d="M10 96c18 0 16-30 32-38 12-6 22 2 30-6" stroke="#093C5C" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="16" cy="96" r="7" fill="#28ABE3" stroke="#093C5C" stroke-width="5"/>
-  <circle cx="44" cy="62" r="7" fill="#28ABE3" stroke="#093C5C" stroke-width="5"/>
-  <circle cx="62" cy="55" r="6" fill="#4ACB78" stroke="#093C5C" stroke-width="5"/>
-  <path d="M88 14l6.7 4.9 8.3-.4 2.5 7.9 6.9 4.6-2.7 7.8 2.7 7.8-6.9 4.6-2.5 7.9-8.3-.4-6.7 4.9-6.7-4.9-8.3.4-2.5-7.9-6.9-4.6 2.7-7.8-2.7-7.8 6.9-4.6 2.5-7.9 8.3.4Z" stroke="#093C5C" stroke-width="6" stroke-linejoin="round"/>
-  <circle cx="88" cy="38" r="9" stroke="#28ABE3" stroke-width="6"/>
-  <path d="M80 66 74 84m22-18 6 18" stroke="#093C5C" stroke-width="6" stroke-linecap="round"/>
+<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="M13 102L34 87L48 72L64 56"
+    stroke="#093C5C"
+    stroke-width="7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="34" cy="87" r="7" fill="#28ABE3" stroke="#093C5C" stroke-width="5"/>
+  <circle cx="48" cy="72" r="7" fill="#28ABE3" stroke="#093C5C" stroke-width="5"/>
+
+  <path
+    d="M70 52L64 84L74 78L80 87L83 59Z"
+    fill="#fff"
+    stroke="#093C5C"
+    stroke-width="6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M87 59L92 87L100 78L109 82L98 51Z"
+    fill="#fff"
+    stroke="#093C5C"
+    stroke-width="6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <path
+    d="M83 10L88.95 14.78L96.5 13.62L99.26 20.74L106.38 23.5L105.22 31.05L110 37L105.22 42.95L106.38 50.5L99.26 53.26L96.5 60.38L88.95 59.22L83 64L77.05 59.22L69.5 60.38L66.74 53.26L59.62 50.5L60.78 42.95L56 37L60.78 31.05L59.62 23.5L66.74 20.74L69.5 13.62L77.05 14.78Z"
+    fill="#fff"
+    stroke="#093C5C"
+    stroke-width="7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M72 37L80 45L95 29"
+    stroke="#4ACB78"
+    stroke-width="6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
 </svg>

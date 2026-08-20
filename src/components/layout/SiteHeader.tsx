@@ -42,9 +42,12 @@ export function SiteHeader() {
         </a>
 
         <div className="site-header__inner">
-          <a className="brand" href="#hero" aria-label={`${brand.product} ${brand.lockup} — home`}>
-            <img className="brand__logo" src={brand.logoColor} alt="" />
-            <span className="brand__lockup">{brand.lockup}</span>
+          <a className="brand" href="/#hero" aria-label={`${brand.product} ${brand.lockup} — home`}>
+            <img className="brand__logo" src={brand.logoSign} alt="" />
+            <span className="brand__lockup" aria-hidden="true">
+              <span className="brand__product">{brand.product}</span>
+              <span className="brand__company">{brand.lockup}</span>
+            </span>
           </a>
 
           <button

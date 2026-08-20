@@ -99,22 +99,34 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.625rem;
   flex-shrink: 0;
 }
 
 .brand__logo {
-  height: 2.125rem;
+  height: 2.25rem;
+  width: auto;
 }
 
 .brand__lockup {
-  padding-left: 0.75rem;
-  border-left: 1px solid var(--c-line);
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.brand__product {
+  color: var(--c-navy);
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.brand__company {
+  color: var(--c-navy);
   font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--c-muted);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
 }
 
 .site-nav {
@@ -271,11 +283,19 @@
   }
 }
 
+/**
+ * The route has to terminate dead-centre under the first and last badge, so its
+ * inset is derived from the 5-column track instead of hard-coded: one column is
+ * `(100% - 4 gaps) / 5`, and half of that is the badge centre. A fixed inset was
+ * within a pixel of the badge edge and left the stroke peeking out at both ends.
+ */
 .route-line {
+  --route-half-col: calc((100% - 4 * var(--space-md)) / 10);
+
   position: absolute;
   top: 0;
-  left: 3.75rem;
-  width: calc(100% - 7.5rem);
+  left: var(--route-half-col);
+  width: calc(100% - 2 * var(--route-half-col));
   height: 5.5rem;
   overflow: visible;
 }
@@ -289,76 +309,13 @@
   animation: route-travel 6s linear infinite;
 }
 
-.route-junction {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-self: stretch;
-  min-height: 16rem;
-}
-
-.route-junction__heads {
-  display: flex;
-  gap: 1.375rem;
-}
-
-.route-junction__head {
-  display: block;
-  width: 1.375rem;
-  height: 1.375rem;
-  border-radius: 50%;
-  border: 3px solid currentcolor;
-}
-
-.route-junction__head::after {
-  content: "";
-  display: block;
-  width: 0.5625rem;
-  height: 0.5625rem;
-  margin: 0.25rem;
-  border-radius: 50%;
-  background: currentcolor;
-}
-
-.route-junction__head--cyan {
-  color: var(--c-cyan);
-}
-
-.route-junction__head--green {
-  color: var(--c-green);
-}
-
-.route-junction__svg {
-  flex: 1;
-  width: 13.75rem;
-  min-height: 0;
-  margin-top: 0.25rem;
-  overflow: visible;
-}
-
-.route-junction__path {
-  opacity: 0.5;
-}
-
-/* Offset durations so the two feeds read as independent, not as one signal. */
-.route-junction__pulse--city {
-  animation: route-travel 5.2s linear infinite;
-}
-
-.route-junction__pulse--fleet {
-  animation: route-travel 4.4s linear infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .route-line__pulse,
-  .route-junction__pulse {
+  .route-line__pulse {
     display: none;
   }
 
   /* Nothing is travelling, so the static route carries the section on its own. */
-  .route-line__path,
-  .route-junction__path {
+  .route-line__path {
     opacity: 0.7;
   }
 }
@@ -404,8 +361,36 @@
   gap: var(--space-xl);
 }
 
+/* The footer mark is sign-only, so the wordmark it used to carry is set as text. */
+.site-footer__mark {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .site-footer__logo {
-  height: 2rem;
+  height: 3.25rem;
+  width: auto;
+}
+
+.site-footer__lockup {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.site-footer__product {
+  color: var(--c-bg);
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.site-footer__company {
+  color: var(--c-muted-dark);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
 }
 
 .site-footer__tagline {
@@ -443,10 +428,6 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--c-muted);
-}
-
-.site-footer__eu {
-  height: 2.75rem;
 }
 
 .site-footer__legal {

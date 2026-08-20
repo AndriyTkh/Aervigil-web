@@ -71,6 +71,10 @@
 }
 
 .hero__title-line--gradient {
+  /* Descender room: the tight hero line-height clips the "g" in "Change"
+     once the glyphs are painted through background-clip. */
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
   background: linear-gradient(90deg, var(--c-navy), var(--c-cyan) 55%, var(--c-green));
   background-clip: text;
   -webkit-background-clip: text;
@@ -183,6 +187,11 @@
   letter-spacing: -0.03em;
 }
 
+/* Figure-less rows from the brief: aligned under the stat text, not the numbers. */
+.problem__stat--note .problem__text {
+  grid-column: 2;
+}
+
 .problem__text {
   font-size: 0.90625rem;
   line-height: 1.5;
@@ -215,6 +224,10 @@
   .problem__stat {
     grid-template-columns: 1fr;
     gap: 0.375rem;
+  }
+
+  .problem__stat--note .problem__text {
+    grid-column: 1;
   }
 }
 
@@ -276,7 +289,7 @@
   align-items: baseline;
   gap: var(--space-md);
   margin-top: 0.875rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: var(--fs-2xs);
   color: var(--c-muted);
 }
@@ -496,19 +509,9 @@
 }
 
 .advantage__title {
-  display: flex;
-  align-items: baseline;
-  gap: 0.625rem;
   font-size: 1.125rem;
   font-weight: 600;
   color: var(--c-navy);
-}
-
-.advantage__num {
-  font-size: var(--fs-2xs);
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  color: var(--c-green);
 }
 
 .advantage__text {
@@ -541,7 +544,7 @@
 .demo__disclaimer {
   margin-top: 1.125rem;
   max-width: 24rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.78125rem;
   line-height: 1.55;
   color: var(--c-muted);
@@ -569,55 +572,84 @@
 
 .network__grid {
   display: grid;
-  grid-template-columns: 1fr 13.75rem 1fr;
-  gap: var(--space-lg);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
   align-items: start;
   margin-top: 3.5rem;
 }
 
 .audience {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 1.625rem;
+  gap: var(--space-md);
 }
 
 .audience__icon {
   flex-shrink: 0;
-  width: 9.375rem;
-  height: 9.375rem;
+  width: 8.5rem;
+  height: 8.5rem;
   object-fit: contain;
   mix-blend-mode: multiply;
 }
 
+/* The fleet artwork is a landscape export with more padding than its siblings,
+   so `contain` lands it ~15% smaller. Scaled from the left edge to match the
+   other two optically without moving the box or shifting the text below. */
+.audience--green .audience__icon {
+  transform: scale(1.15);
+  transform-origin: left center;
+}
+
+.audience__sector {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid currentcolor;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--c-cyan);
+}
+
+.audience--green .audience__sector {
+  color: var(--c-green);
+}
+
+.audience--navy .audience__sector {
+  color: var(--c-navy);
+}
+
 .audience__title {
+  margin-top: 0.75rem;
   font-size: var(--fs-h3);
   font-weight: 600;
   color: var(--c-navy);
 }
 
-.audience__points {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-.audience__points li {
-  display: flex;
-  align-items: baseline;
-  gap: 0.625rem;
+.audience__copy {
+  margin-top: 0.625rem;
   font-size: var(--fs-body);
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--c-ink-soft);
+  text-wrap: pretty;
 }
 
-.audience__tick {
-  font-weight: 700;
-  color: var(--c-cyan);
+/* Deep link into the matching sector band on /solutions. */
+.audience__more {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
 }
 
-.audience--green .audience__tick {
+.audience--green .audience__more {
   color: var(--c-green);
+}
+
+.audience--green .audience__more:hover,
+.audience--navy .audience__more:hover {
+  color: var(--c-navy);
 }
 
 .network__cta {
@@ -626,38 +658,30 @@
   margin-top: var(--space-md);
 }
 
+/* Tablet: three columns get too narrow, but a single column leaves the section
+   very tall and sparse — so pair the first two and centre the third below. */
 @media (width <= 62rem) {
   .network__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-xl);
   }
 
-  /* Stacked columns have no gutter to draw a junction in — the two routes
-     collapse to a single gradient rule between the audiences. */
-  .route-junction {
-    min-height: 0;
-    justify-content: center;
-  }
-
-  .route-junction__heads,
-  .route-junction__svg {
-    display: none;
-  }
-
-  .route-junction::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--c-cyan), var(--c-green));
-    opacity: 0.5;
+  .network__grid > .audience:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - var(--space-xl)) / 2);
   }
 }
 
 @media (width <= 34rem) {
-  .audience {
-    flex-direction: column;
-    gap: var(--space-md);
+  .network__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .network__grid > .audience:last-child {
+    grid-column: auto;
+    justify-self: stretch;
+    width: auto;
   }
 
   .audience__icon {
@@ -760,8 +784,8 @@
 }
 
 .news-item--placeholder .news-item__title {
-  font-family: var(--font-mono);
   font-size: 0.84375rem;
+  letter-spacing: 0.01em;
   color: var(--c-muted);
 }
 

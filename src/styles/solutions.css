@@ -1,0 +1,296 @@
+/** /solutions page: intro, sector colour bands, and the vertical route spine. */
+
+/* ------------------------------------------------------------------ intro -- */
+
+.sol-intro .section__title {
+  max-width: 20ch;
+}
+
+/* ------------------------------------------------------------------ spine -- */
+
+/* Positioning context for the one spine that spans all sector bands. */
+.sol-sectors {
+  position: relative;
+}
+
+/**
+ * The spine is one SVG over the whole sector stack, sitting over the rail
+ * column *inside* the centred container: its left edge is the container's
+ * left content edge — `(100% - container) / 2 + gutter`, clamped for
+ * viewports narrower than the container. It paints above the band
+ * backgrounds (z-index 1) but below the station nodes (rail, z-index 2).
+ */
+.sol-spine {
+  position: absolute;
+  inset-block: 0;
+  left: calc((100% - min(100%, var(--container))) / 2 + var(--gutter));
+  z-index: 1;
+  width: 3.5rem;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.sol-spine__path {
+  opacity: 0.55;
+}
+
+.sol-spine__pulse {
+  filter: drop-shadow(0 0 6px rgb(40 171 227 / 45%));
+  animation: route-travel 7s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sol-spine__pulse {
+    display: none;
+  }
+
+  .sol-spine__path {
+    opacity: 0.7;
+  }
+}
+
+/* ---------------------------------------------------------------- sectors -- */
+
+/* A hairline + soft top shading separate the light bands from each other. */
+.sol-sector {
+  border-top: 1px solid rgb(9 60 92 / 12%);
+  box-shadow: inset 0 16px 24px -20px rgb(9 60 92 / 30%);
+}
+
+/* The dark band separates itself; shading would just muddy the gradient. */
+.sol-sector.section--dark {
+  border-top: none;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+/* Ring colour for the station nodes: each band punches its own background
+   through, so the route reads as passing *behind* the station. */
+.sol-sector.section--mint {
+  --sol-band: var(--c-mint);
+}
+
+.sol-sector.section--surface {
+  --sol-band: var(--c-surface);
+}
+
+.sol-sector.section--dark {
+  --sol-band: var(--c-navy);
+}
+
+.sol-sector__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  column-gap: var(--space-lg);
+  align-items: start;
+}
+
+/* Rail sits above the spine (z-index 1) so nodes cover the passing pulse. */
+.sol-sector__rail {
+  position: relative;
+  z-index: 2;
+}
+
+/**
+ * Station marker on the route, aligned with the sector heading block.
+ * Metro-map style: accent core, opaque band-coloured gap, accent outer ring —
+ * fully static and opaque so the travelling pulse disappears behind it.
+ */
+.sol-node {
+  display: block;
+  box-sizing: content-box;
+  margin: 2.25rem auto 0;
+  width: 0.875rem;
+  height: 0.875rem;
+  border: 0.25rem solid var(--sol-band, var(--c-bg));
+  border-radius: 50%;
+  background: var(--c-cyan);
+  box-shadow: 0 0 0 2px var(--c-cyan);
+}
+
+.sol-sector--green .sol-node {
+  background: var(--c-green);
+  box-shadow: 0 0 0 2px var(--c-green);
+}
+
+/* B2C sits on the dark band, where navy would vanish — green reads instead. */
+.sol-sector--navy .sol-node {
+  background: var(--c-green);
+  box-shadow: 0 0 0 2px var(--c-green);
+}
+
+.sol-sector__head {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* White tile keeps the line-drawn icons legible on every band, dark included. */
+.sol-sector__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 6rem;
+  height: 6rem;
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-badge);
+}
+
+.sol-sector__icon img {
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: contain;
+}
+
+.sol-sector__badge {
+  display: inline-block;
+  margin-bottom: 0.625rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid currentcolor;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--c-cyan);
+}
+
+.sol-sector--green .sol-sector__badge {
+  color: var(--c-green);
+}
+
+.sol-sector--navy .sol-sector__badge {
+  color: var(--c-green);
+}
+
+/* ------------------------------------------------------------------ cases -- */
+
+.sol-case {
+  margin-top: 2.75rem;
+  max-width: 56rem;
+}
+
+.sol-case + .sol-case {
+  padding-top: 2.75rem;
+  border-top: 1px solid rgb(9 60 92 / 12%);
+}
+
+.sol-case__title {
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  color: var(--c-navy);
+}
+
+.sol-case__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  margin-top: 1.25rem;
+}
+
+.sol-case__label {
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-cyan);
+}
+
+.sol-sector--green .sol-case__label {
+  color: var(--c-green);
+}
+
+.sol-sector--navy .sol-case__label {
+  color: var(--c-green);
+}
+
+.sol-case__copy {
+  margin-top: 0.5rem;
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--c-ink-soft);
+  text-wrap: pretty;
+}
+
+/* The answer half carries the accent — the route delivers the solution. */
+.sol-case__cell--solution {
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--c-cyan);
+}
+
+.sol-sector--green .sol-case__cell--solution {
+  border-left-color: var(--c-green);
+}
+
+.sol-sector--navy .sol-case__cell--solution {
+  border-left-color: var(--c-green);
+}
+
+/* Dark band inversions. */
+.sol-sector--navy .sol-case__title {
+  color: var(--c-bg);
+}
+
+.sol-sector--navy .sol-case__copy {
+  color: var(--c-muted-dark);
+}
+
+.sol-sector--navy .sol-case + .sol-case {
+  border-top-color: var(--c-line-dark);
+}
+
+/* -------------------------------------------------------------------- cta -- */
+
+.sol-cta .container {
+  text-align: center;
+}
+
+.sol-cta .section__title {
+  max-width: none;
+}
+
+.sol-cta .section__lede {
+  margin-inline: auto;
+}
+
+.sol-cta .btn {
+  margin-top: 2.125rem;
+}
+
+/* ------------------------------------------------------------- responsive -- */
+
+@media (width <= 62rem) {
+  /* Stacked layout: the spine and rail step aside, bands carry the sequence. */
+  .sol-spine,
+  .sol-sector__rail {
+    display: none;
+  }
+
+  .sol-sector__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .sol-sector__head {
+    gap: 1.125rem;
+  }
+
+  .sol-sector__icon {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  .sol-sector__icon img {
+    width: 3.375rem;
+    height: 3.375rem;
+  }
+}
+
+@media (width <= 48rem) {
+  .sol-case__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+}

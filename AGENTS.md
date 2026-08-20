@@ -63,3 +63,15 @@ deeper detail lives in [docs/](docs/).
 - ADAM is pre-launch. The four development-stage disclosures listed in
   [docs/content-map.md](docs/content-map.md) must survive copy edits, and EN 15267-4 is
   always a target, never a certification.
+
+## Technology page decisions (page currently disconnected)
+
+- `/technology` is not routed or styled in the build; the component, copy and CSS are kept
+  for a future reconnect. The decisions below apply if it is brought back.
+- `/technology` has exactly three anchored product sections: Hardware, Software and Data
+  analytics. The page intro belongs to Hardware rather than adding a fourth section.
+- `public/assets/illustrations/ADAM ass(1).JPG` is the primary Hardware visual and must
+  remain described as an engineering render of hardware in development.
+- The supplied three-column screenshot is a graphics reference only. The Technology page
+  uses its own vertical measurement-chain layout, carrying the homepage cyan-to-green route
+  from capture through software to analytics.

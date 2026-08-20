@@ -98,9 +98,28 @@ const mxFingerprint = (records) =>
     .sort()
     .join("\n");
 
-const zones = await cf(`/zones?name=${encodeURIComponent(ZONE)}`);
-if (zones.length !== 1) throw new Error(`Expected exactly 1 zone named ${ZONE}, got ${zones.length}. Check the token's zone scope.`);
-const zoneId = zones[0].id;
+// Resolving the zone by name needs `Zone:Read`, which a DNS-only token does not
+// have. Prefer an explicitly supplied id so the token can stay scoped to just
+// `Zone:DNS:Edit`. The zone id is not a secret — it is shown on the domain's
+// Overview page in the dashboard.
+async function resolveZoneId() {
+  const zoneIdIdx = args.indexOf("--zone-id");
+  const explicit = zoneIdIdx !== -1 ? args[zoneIdIdx + 1] : process.env.CLOUDFLARE_ZONE_ID;
+  if (explicit) {
+    if (!/^[0-9a-f]{32}$/.test(explicit)) fail(`--zone-id must be 32 hex characters, got ${explicit.length} chars`);
+    return explicit;
+  }
+  const zones = await cf(`/zones?name=${encodeURIComponent(ZONE)}`);
+  if (zones.length === 1) return zones[0].id;
+  fail(
+    `could not resolve the zone id for ${ZONE} (the token returned ${zones.length} zones).\n` +
+      `  A token with only Zone:DNS:Edit cannot list zones, which is normal.\n` +
+      `  Pass it explicitly: --zone-id <32 hex chars>, or set CLOUDFLARE_ZONE_ID.\n` +
+      `  Find it on the domain's Overview page in the Cloudflare dashboard, under API.`,
+  );
+}
+
+const zoneId = await resolveZoneId();
 console.log(`zone ${ZONE} (${zoneId})`);
 
 const existing = await cf(`/zones/${zoneId}/dns_records?per_page=500`);

@@ -1,0 +1,59 @@
+<!--
+  B2C audience icon — residents, their street, and a measurement route.
+
+  Drawn to match the two PNG siblings in this folder optically: one uniform
+  stroke weight at 0.96% of the canvas (2.3 / 240 — the same ratio as
+  cities-public-agencies-clean.png at 12 / 1254), and an ink bounding box
+  filling ~0.8 of the canvas so `object-fit: contain` lands all three at the
+  same visual size.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <g
+    stroke="#093c5c"
+    stroke-width="2.3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <!-- Home -->
+    <path d="M18,90 L66,44 L114,90" />
+    <path d="M28,86 V154 H104 V86" />
+    <path d="M58,154 V118 H78 V154" />
+    <rect x="36" y="104" width="16" height="16" rx="1.5" />
+    <rect x="58" y="62" width="16" height="16" rx="1.5" />
+
+    <!-- Two residents -->
+    <circle cx="135" cy="86" r="11" />
+    <path d="M122,154 C122,118 126,105 135,105 C144,105 148,118 148,154" />
+    <circle cx="166" cy="86" r="11" />
+    <path d="M153,154 C153,118 157,105 166,105 C175,105 179,118 179,154" />
+  </g>
+
+  <!-- Measurement route -->
+  <g stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="26" cy="190" r="6.5" stroke="#093c5c" />
+    <path
+      d="M33,190 H58 C72,190 72,204 86,204 H152 C172,204 176,191 190,191"
+      stroke="#093c5c"
+    />
+    <path
+      d="M74,222 H160 C178,222 182,206 192,198"
+      stroke="#093c5c"
+      stroke-dasharray="7 9"
+    />
+    <circle cx="86" cy="204" r="6.5" fill="#28abe3" stroke="#093c5c" />
+  </g>
+
+  <!-- Leaf pin over the route -->
+  <g stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+    <path
+      d="M198,184 C187,168 182,158 182,150 A16,16 0 1 1 214,150 C214,158 209,168 198,184 Z"
+      stroke="#093c5c"
+    />
+    <path
+      d="M190,155 C189,143 196,137 206,138 C206,148 199,155 191,155 Z"
+      stroke="#4acb78"
+    />
+    <path d="M192,153 L204,141" stroke="#4acb78" />
+    <circle cx="198" cy="191" r="7" fill="#ffffff" stroke="#4acb78" />
+  </g>
+</svg>
