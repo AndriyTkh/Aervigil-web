@@ -28,7 +28,7 @@ export function SiteHeader() {
 
   // A drawer left open while the viewport grows back to desktop would trap scroll.
   useEffect(() => {
-    const query = window.matchMedia("(min-width: 62rem)");
+    const query = window.matchMedia("(min-width: 68rem)");
     const onChange = () => query.matches && setMenuOpen(false);
     query.addEventListener("change", onChange);
     return () => query.removeEventListener("change", onChange);
@@ -75,6 +75,29 @@ export function SiteHeader() {
                 </li>
               ))}
             </ul>
+            <a
+              className="btn btn--ghost btn--sm nav-brochure"
+              href={nav.brochure.href}
+              download
+              aria-label={`Download ${nav.brochure.label} (PDF)`}
+              title={`Download ${nav.brochure.label} (PDF)`}
+              onClick={() => setMenuOpen(false)}
+            >
+              <svg
+                className="nav-brochure__icon"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M8 2v8m0 0 3-3m-3 3L5 7" />
+                <path d="M2.5 11v1.5A1.5 1.5 0 0 0 4 14h8a1.5 1.5 0 0 0 1.5-1.5V11" />
+              </svg>
+              <span className="nav-brochure__label">{nav.brochure.label}</span>
+            </a>
             <a
               className="btn btn--primary btn--sm"
               href={nav.cta.href}

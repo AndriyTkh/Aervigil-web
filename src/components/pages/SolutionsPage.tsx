@@ -13,7 +13,7 @@ import { RouteSpine, type SpineStop } from "../ui/RouteSpine";
 /** Band background + spine colour per sector, in page order. */
 const SECTOR_CHROME: Record<string, { band: string; color: string }> = {
   cities: { band: "section--mint", color: "var(--c-cyan)" },
-  industry: { band: "section--surface", color: "var(--c-green)" },
+  industry: { band: "section--mist", color: "var(--c-green)" },
   citizens: { band: "section--dark", color: "var(--c-green)" },
 };
 
@@ -112,7 +112,7 @@ export function SolutionsPage() {
         ))}
       </div>
 
-      <section className="section section--surface sol-cta" aria-labelledby="sol-cta-title">
+      <section className="section section--mint sol-cta" aria-labelledby="sol-cta-title">
         <div className="container">
           <h2 className="section__title section__title--sm" id="sol-cta-title">
             {solutions.cta.title}

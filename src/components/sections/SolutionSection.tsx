@@ -5,7 +5,7 @@ export function SolutionSection() {
   const { solution } = site;
 
   return (
-    <section className="section solution" id="solution" aria-labelledby="solution-title">
+    <section className="section section--mist solution" id="solution" aria-labelledby="solution-title">
       <div className="container solution__inner">
         <div className="solution__copy reveal">
           <Eyebrow>{solution.eyebrow}</Eyebrow>

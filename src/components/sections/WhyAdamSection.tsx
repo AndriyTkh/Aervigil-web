@@ -5,7 +5,7 @@ export function WhyAdamSection() {
   const { why } = site;
 
   return (
-    <section className="section section--mint why" id="why" aria-labelledby="why-title">
+    <section className="section section--mist why" id="why" aria-labelledby="why-title">
       <div className="container">
         <Eyebrow tone="muted">{why.eyebrow}</Eyebrow>
         <h2 className="section__title" id="why-title">

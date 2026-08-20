@@ -4,7 +4,7 @@ export function NewsSection() {
   const { news } = site;
 
   return (
-    <section className="section section--surface news" id="news" aria-labelledby="news-title">
+    <section className="section section--mint news" id="news" aria-labelledby="news-title">
       <div className="container">
         <div className="news__head">
           <h2 className="section__title section__title--xs" id="news-title">

@@ -60,6 +60,19 @@ deeper detail lives in [docs/](docs/).
   must stay labelled as illustrative.
 - The continuous blue-to-green route is the page's signature device — keep it. Cyan is
   always the city, green is always the fleet.
+- Coordinator decisions, 2026-08-20: section backgrounds use exactly three surfaces —
+  mist, mint ("Eco Mist") alternating, plus the Aer Navy dark bands; white/`bg` are for
+  cards and the page shell only. Buttons are flat (gradient CTA retired): navy primary on
+  light bands, cyan accent on dark bands. The hero badge is just "Grant-backed
+  development program" — the "team now forming" half read as unserious to investors. The
+  hero mission (headline + tagline + "We turned the city into a sensor.") is one cyan
+  block, never split; the ADAM description below it is muted body copy. Problem-section
+  note rows lead with the accent phrase in the first column. Homepage sector cards are
+  icon-led teasers (no summary copy); icons link to /solutions. The logo asset carries no
+  wordmark text — the site renders the sign plus an HTML "ADAM / by AerVigil" lockup.
+- The brochure lives at `public/downloads/adam-brochure-2026.pdf` and is linked (with
+  `download`) from the header nav and the footer Explore group. Replace the file in
+  place when a new edition ships.
 - ADAM is pre-launch. The four development-stage disclosures listed in
   [docs/content-map.md](docs/content-map.md) must survive copy edits, and EN 15267-4 is
   always a target, never a certification.

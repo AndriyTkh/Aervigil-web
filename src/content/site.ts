@@ -10,14 +10,14 @@
 export type NavLink = { label: string; href: string };
 
 export type ProblemStat = {
-  /** Large figure, e.g. "330K+". Rendered with tabular numerals. Omitted on note rows. */
+  /** First-column figure ("330K+") or, on note rows, the accented key phrase. */
   value?: string;
-  /** Body copy. The `emphasis` substring is highlighted inside it. */
+  /** Body copy. The `emphasis` substring is highlighted inside it (empty = none). */
   text: string;
   emphasis: string;
   /** The first stat renders as the oversized lead row. */
   lead?: boolean;
-  /** Figure-less row: a full-width statement qualifying the stat above it. */
+  /** Phrase-led row: the accent sits in the first column so the problem reads column-first. */
   note?: boolean;
 };
 
@@ -38,8 +38,6 @@ export type Audience = {
   accent: "cyan" | "green" | "navy";
   /** Sector heading on the solutions page and the homepage teaser card. */
   title: string;
-  /** One-line homepage teaser; the full challenge/solution text lives on /solutions. */
-  summary: string;
   /** B2B carries two audiences; the others one. */
   cases: AudienceCase[];
 };
@@ -75,13 +73,17 @@ export const site = {
       { label: "News", href: "/#news" },
     ] as NavLink[],
     cta: { label: "Start a conversation", href: "/#contact" },
+    /* Downloadable product brochure, mirrored in the footer's Explore group. */
+    brochure: { label: "Brochure", href: "/downloads/adam-brochure-2026.pdf" },
   },
 
   hero: {
-    badge: "Grant-backed development program · Team and pilot network now forming",
+    badge: "Grant-backed development program",
     headline: ["Move.", "Measure.", "Change."],
+    /* The mission is one block: headline + tagline + sensor line, never separated. */
     tagline: "Cities in motion. Air under control.",
-    body: "We turned the city into a sensor. ADAM is a mobile, AI-driven air monitoring system in development by AerVigil — designed to ride on partner vehicles and read the air street by street.",
+    sensor: "We turned the city into a sensor.",
+    body: "ADAM is a mobile, AI-driven air monitoring system in development by AerVigil — designed to ride on partner vehicles and read the air street by street.",
     primaryCta: { label: "See it in action", href: "#demo" },
     secondaryCta: { label: "How ADAM works", href: "#solution" },
     image: "/assets/illustrations/hero-moving-lab.png",
@@ -112,8 +114,9 @@ export const site = {
       },
       {
         note: true,
-        emphasis: "now in violation",
-        text: "The new EU Air Quality Directive 2024 sets stricter limits, meaning many cities that were previously compliant are now in violation",
+        value: "EU Air Quality Directive 2024",
+        emphasis: "",
+        text: "brings stricter EU air quality limits, pushing many cities out of compliance",
       },
       {
         value: "5–10%",
@@ -122,8 +125,9 @@ export const site = {
       },
       {
         note: true,
-        emphasis: "€50,000–€150,000",
-        text: "One stationary monitoring station costs €50,000–€150,000, making dense networks financially impossible",
+        value: "€50,000–€150,000",
+        emphasis: "",
+        text: "is the cost of just one stationary monitoring station, making dense networks financially impossible",
       },
     ] as ProblemStat[],
   },
@@ -257,8 +261,6 @@ export const site = {
         icon: "/assets/icons/audiences/cities-public-agencies-clean.png",
         iconAlt: "Line drawing of a civic building with a measurement route",
         title: "Cities & public administrations",
-        summary:
-          "A real-time air quality map of every street, plus automated EU directive reporting.",
         cases: [
           {
             title: "Municipalities & City Administrations",
@@ -276,8 +278,6 @@ export const site = {
         icon: "/assets/icons/audiences/industry-logistics-clean.png",
         iconAlt: "Line drawing of a delivery van leaving a depot on a measurement route",
         title: "Business, industry & real estate",
-        summary:
-          "CSRD-ready compliance reports for enterprises and verified ESG data for developers.",
         cases: [
           {
             title: "Industrial Enterprises & Logistics",
@@ -302,7 +302,6 @@ export const site = {
         icon: "/assets/icons/audiences/people-communities-clean.svg",
         iconAlt: "Line drawing of residents on a street with a measurement route",
         title: "People & communities",
-        summary: "A mobile app with air alerts, clean-air routes and personal exposure insights.",
         cases: [
           {
             title: "Citizens",
@@ -499,6 +498,7 @@ export const site = {
           { label: "Solutions", href: "/solutions" },
           { label: "See It in Action", href: "/#demo" },
           { label: "News", href: "/#news" },
+          { label: "Brochure (PDF)", href: "/downloads/adam-brochure-2026.pdf" },
         ],
       },
       {

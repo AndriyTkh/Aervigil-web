@@ -5,7 +5,7 @@ export function CompanySection() {
   const { mission, team, backing } = site.company;
 
   return (
-    <section className="section company" id="company" aria-labelledby="company-mission-title">
+    <section className="section section--mist company" id="company" aria-labelledby="company-mission-title">
       <div className="container company__grid">
         <div className="company__col reveal">
           <Eyebrow>{mission.eyebrow}</Eyebrow>

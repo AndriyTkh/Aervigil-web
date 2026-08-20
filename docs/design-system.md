@@ -23,9 +23,11 @@ Source of truth for the visual design: `aervigil-webpage-design/Aervigil Homepag
 | `--c-muted-dark` | `#9FB4BF` | Body copy on dark |
 | `--c-legal` | `#4A5E69` | Footer legal line |
 
-Band order down the page alternates light → dark so each section reads as its own
-surface: `bg` → dark gradient → `bg` → `mist` → `mint` → `deep` → `surface` → `bg` →
-`surface` → dark gradient → footer.
+Backgrounds use exactly three surfaces (coordinator decision, 2026-08-20): `mist`,
+`mint` ("Eco Mist") and the Aer Navy dark bands. Light bands alternate mist/mint down
+the page; `surface` (white) and `bg` are reserved for cards and the page shell, never
+section bands. Homepage order: `bg` (hero) → dark gradient → `mist` → `mint` → `mist` →
+`deep` → `mint` → `mist` → `mint` → dark gradient → footer.
 
 ### The route
 
@@ -82,7 +84,7 @@ Three, expressed in `rem` so they respect the user's font size:
 | `.btn--primary` | Navy fill → cyan on hover. Header CTA, hero primary, pilot CTA |
 | `.btn--ghost` | Navy outline → mist fill on hover. Hero secondary |
 | `.btn--accent` | Cyan fill → green on hover. Demo (on dark) |
-| `.btn--gradient` | Cyan→green gradient. Contact CTA only — one per page |
+| (removed) | Gradient buttons were retired 2026-08-20 — one flat style everywhere; dark bands use `.btn--accent` |
 | `.eyebrow` | Uppercase kicker, `0.22em` tracking. `--cyan` default, `--muted` on the mint band |
 | `.section__title` | Section heading; `--lg` / `--sm` / `--xs` modifiers |
 | `.advantage` | "Why ADAM" card: icon tile + numbered title + body |

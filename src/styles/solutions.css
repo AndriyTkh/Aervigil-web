@@ -71,8 +71,8 @@
   --sol-band: var(--c-mint);
 }
 
-.sol-sector.section--surface {
-  --sol-band: var(--c-surface);
+.sol-sector.section--mist {
+  --sol-band: var(--c-mist);
 }
 
 .sol-sector.section--dark {

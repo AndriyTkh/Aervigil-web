@@ -5,7 +5,7 @@ export function NetworkSection() {
   const { network } = site;
 
   return (
-    <section className="section section--surface network" id="network" aria-labelledby="network-title">
+    <section className="section section--mint network" id="network" aria-labelledby="network-title">
       <div className="container">
         <Eyebrow>{network.eyebrow}</Eyebrow>
         <h2 className="section__title" id="network-title">
@@ -28,16 +28,19 @@ export function NetworkSection() {
   );
 }
 
-/** Teaser card: the full challenge/solution text lives on /solutions. */
+/** Teaser card: icon-led, no description — the full text lives on /solutions. */
 function AudienceCard({ audience }: { audience: (typeof site.network.audiences)[number] }) {
+  const solutionHref = `/solutions#${audience.id}`;
+
   return (
     <div className={`audience audience--${audience.accent} reveal`}>
-      <img className="audience__icon" src={audience.icon} alt={audience.iconAlt} loading="lazy" />
+      <a className="audience__icon-link" href={solutionHref} aria-label={`${audience.title} — full solution`}>
+        <img className="audience__icon" src={audience.icon} alt={audience.iconAlt} loading="lazy" />
+      </a>
       <div>
         <p className="audience__sector">{audience.sector}</p>
         <h3 className="audience__title">{audience.title}</h3>
-        <p className="audience__copy">{audience.summary}</p>
-        <a className="audience__more" href={`/solutions#${audience.id}`}>
+        <a className="audience__more" href={solutionHref}>
           {site.network.explore}
         </a>
       </div>

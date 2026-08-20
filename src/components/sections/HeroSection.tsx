@@ -27,7 +27,10 @@ export function HeroSection() {
           ))}
         </h1>
 
-        <p className="hero__tagline">{hero.tagline}</p>
+        <p className="hero__tagline">
+          {hero.tagline}
+          <span className="hero__tagline-line">{hero.sensor}</span>
+        </p>
         <p className="hero__body">{hero.body}</p>
 
         <div className="hero__actions">

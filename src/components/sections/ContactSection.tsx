@@ -11,7 +11,7 @@ export function ContactSection() {
           {contact.title}
         </h2>
         <p className="contact__body">{contact.body}</p>
-        <a className="btn btn--gradient" href={mailto}>
+        <a className="btn btn--accent" href={mailto}>
           {contact.ctaLabel}
         </a>
       </div>

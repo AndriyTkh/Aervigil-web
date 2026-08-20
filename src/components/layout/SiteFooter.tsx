@@ -38,6 +38,7 @@ export function SiteFooter() {
                         {...(link.href.startsWith("http")
                           ? { target: "_blank", rel: "noreferrer noopener" }
                           : {})}
+                        {...(link.href.endsWith(".pdf") ? { download: true } : {})}
                       >
                         {link.label}
                       </a>

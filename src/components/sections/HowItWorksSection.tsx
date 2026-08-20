@@ -5,7 +5,7 @@ export function HowItWorksSection() {
   const { how } = site;
 
   return (
-    <section className="section section--mist how" id="how" aria-labelledby="how-title">
+    <section className="section section--mint how" id="how" aria-labelledby="how-title">
       <div className="container">
         <div className="how__head">
           <h2 className="section__title section__title--sm" id="how-title">

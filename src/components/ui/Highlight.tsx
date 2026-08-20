@@ -11,6 +11,7 @@ type HighlightProps = {
  * across JSX fragments. Falls back to plain text when the phrase is absent.
  */
 export function Highlight({ text, emphasis }: HighlightProps) {
+  if (!emphasis) return <>{text}</>;
   const start = text.indexOf(emphasis);
   if (start === -1) return <>{text}</>;
 

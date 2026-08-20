@@ -115,7 +115,9 @@ the client brief; do not soften, sharpen or round them without a decision on rec
 
 ADAM is pre-launch. The page says so in four places, and all four should survive edits:
 
-1. Hero badge — "Grant-backed development program · Team and pilot network now forming".
+1. Hero badge — "Grant-backed development program". (The "Team and pilot network now
+   forming" half was cut on coordinator feedback, 2026-08-20 — it read as unserious to
+   investors. The forming note survives in the company section.)
 2. Hardware figure caption — "in development".
 3. Demo disclaimer — "Illustrative demo with simulated data — not a live deployment or
    certified measurement result."
