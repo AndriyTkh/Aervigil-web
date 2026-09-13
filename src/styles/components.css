@@ -62,18 +62,6 @@
   flex-shrink: 0;
 }
 
-/* Mid-width desktops: the label would crowd the nav row, so the button goes icon-only
-   (the aria-label and title still name it). The mobile drawer keeps the full label. */
-@media (width <= 80rem) and (width > 68rem) {
-  .nav-brochure__label {
-    display: none;
-  }
-
-  .site-nav,
-  .site-nav__list {
-    gap: 1.25rem;
-  }
-}
 
 /* ----------------------------------------------------------------- header -- */
 
@@ -102,34 +90,37 @@
   padding: 0.875rem var(--gutter);
 }
 
+/* Sized against the supplied horizontal logo: the wordmark is a little under half
+   the sign's height, and "by AerVigil" hangs from the wordmark's right edge. */
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.625rem;
+  gap: 0.5rem;
   flex-shrink: 0;
 }
 
 .brand__logo {
-  height: 2.25rem;
+  height: 3rem;
   width: auto;
 }
 
 .brand__lockup {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   line-height: 1.05;
 }
 
 .brand__product {
   color: var(--c-navy);
-  font-size: 1.125rem;
+  font-size: 1.75rem;
   font-weight: 700;
   letter-spacing: 0.04em;
 }
 
 .brand__company {
   color: var(--c-navy);
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.06em;
   opacity: 0.7;
@@ -156,6 +147,33 @@
 
 .site-nav__link:hover {
   color: var(--c-cyan);
+}
+
+/* Mid-width desktops: the label would crowd the nav row, so the button goes icon-only
+   (the aria-label and title still name it). The mobile drawer keeps the full label. */
+@media (width <= 80rem) and (width > 68rem) {
+  .nav-brochure__label {
+    display: none;
+  }
+
+  .site-nav,
+  .site-nav__list {
+    gap: 0.75rem;
+  }
+
+  /* The full-size lockup plus seven nav labels overrun the row here, so the
+     brand steps down until the drawer takes over at 68rem. */
+  .brand__logo {
+    height: 2.25rem;
+  }
+
+  .brand__product {
+    font-size: 1.25rem;
+  }
+
+  .brand__company {
+    font-size: 0.6875rem;
+  }
 }
 
 .menu-toggle {
