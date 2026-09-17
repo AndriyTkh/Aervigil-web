@@ -1,4 +1,5 @@
 import { site } from "../../content/site";
+import { ContactCta } from "../ui/ContactCta";
 import { Eyebrow } from "../ui/Eyebrow";
 
 export function NetworkSection() {
@@ -19,9 +20,7 @@ export function NetworkSection() {
         </div>
 
         <div className="network__cta">
-          <a className="btn btn--primary" href={network.cta.href}>
-            {network.cta.label}
-          </a>
+          <ContactCta>{network.cta.label}</ContactCta>
         </div>
       </div>
     </section>

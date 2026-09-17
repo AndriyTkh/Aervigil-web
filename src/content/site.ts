@@ -72,7 +72,8 @@ export const site = {
       { label: "Who we are", href: "/#company" },
       { label: "News", href: "/#news" },
     ] as NavLink[],
-    cta: { label: "Start a conversation", href: "/#contact" },
+    /** Opens the shared contact mailto — see components/ui/ContactCta. */
+    cta: { label: "Start a conversation" },
     /* Downloadable product brochure, mirrored in the footer's Explore group. */
     brochure: { label: "Brochure", href: "/downloads/adam-brochure-2026.pdf" },
   },
@@ -250,7 +251,8 @@ export const site = {
   network: {
     eyebrow: "Build the first network with us",
     title: "Existing routes can become shared environmental infrastructure.",
-    cta: { label: "Discuss a pilot →", href: "/#contact" },
+    /** Opens the shared contact mailto — see components/ui/ContactCta. */
+    cta: { label: "Discuss a pilot →" },
     /** Teaser link on each card; targets the matching sector on /solutions. */
     explore: "Full solution →",
     audiences: [
@@ -326,7 +328,6 @@ export const site = {
       title: "Ready to put your city on the route?",
       body: "Join the first pilot network — as a city, a fleet operator or a data partner.",
       label: "Discuss a pilot",
-      href: "/#contact",
     },
   },
 
@@ -446,7 +447,6 @@ export const site = {
       title: "Want ADAM measuring your streets?",
       body: "Join the first pilot network — as a city, a fleet operator or a data partner.",
       label: "Discuss a pilot",
-      href: "/#contact",
     },
   },
   company: {

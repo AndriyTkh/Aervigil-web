@@ -1,8 +1,8 @@
 import { site } from "../../content/site";
+import { ContactCta } from "../ui/ContactCta";
 
 export function ContactSection() {
   const { contact } = site;
-  const mailto = `mailto:?subject=${encodeURIComponent(contact.mailSubject)}`;
 
   return (
     <section className="section section--gradient contact" id="contact" aria-labelledby="contact-title">
@@ -11,9 +11,7 @@ export function ContactSection() {
           {contact.title}
         </h2>
         <p className="contact__body">{contact.body}</p>
-        <a className="btn btn--accent" href={mailto}>
-          {contact.ctaLabel}
-        </a>
+        <ContactCta variant="accent">{contact.ctaLabel}</ContactCta>
       </div>
     </section>
   );

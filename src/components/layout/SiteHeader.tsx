@@ -1,5 +1,6 @@
 import { useEffect, useId, useState } from "react";
 import { site } from "../../content/site";
+import { ContactCta } from "../ui/ContactCta";
 import { useScrolled } from "../../hooks/useScrolled";
 
 export function SiteHeader() {
@@ -100,13 +101,9 @@ export function SiteHeader() {
               </svg>
               <span className="nav-brochure__label">{nav.brochure.label}</span>
             </a>
-            <a
-              className="btn btn--primary btn--sm"
-              href={nav.cta.href}
-              onClick={() => setMenuOpen(false)}
-            >
+            <ContactCta size="sm" onClick={() => setMenuOpen(false)}>
               {nav.cta.label}
-            </a>
+            </ContactCta>
           </nav>
         </div>
       </header>

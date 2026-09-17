@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { site } from "../../content/site";
+import { ContactCta } from "../ui/ContactCta";
 import { Eyebrow } from "../ui/Eyebrow";
 import { RouteSpine, type SpineStop } from "../ui/RouteSpine";
 
@@ -118,9 +119,7 @@ export function SolutionsPage() {
             {solutions.cta.title}
           </h2>
           <p className="section__lede">{solutions.cta.body}</p>
-          <a className="btn btn--primary" href={solutions.cta.href}>
-            {solutions.cta.label}
-          </a>
+          <ContactCta>{solutions.cta.label}</ContactCta>
         </div>
       </section>
     </main>

@@ -9,6 +9,7 @@ import { PlugsConnected } from "@phosphor-icons/react/dist/csr/PlugsConnected";
 import { Truck } from "@phosphor-icons/react/dist/csr/Truck";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { site } from "../../content/site";
+import { ContactCta } from "../ui/ContactCta";
 import { Eyebrow } from "../ui/Eyebrow";
 import { DataFlow } from "../ui/DataFlow";
 
@@ -141,9 +142,7 @@ export function TechnologyPage() {
             {technology.cta.title}
           </h2>
           <p className="section__lede">{technology.cta.body}</p>
-          <a className="btn btn--primary" href={technology.cta.href}>
-            {technology.cta.label}
-          </a>
+          <ContactCta>{technology.cta.label}</ContactCta>
         </div>
       </section>
     </main>
