@@ -90,46 +90,77 @@
   padding: 0.875rem var(--gutter);
 }
 
-/* Sized against the supplied horizontal logo: "ADAM" runs about twice the sign's
-   width, and "by AERVIGIL" matches the sign's width, hanging from the wordmark's
-   right edge. The sign is 527 x 404, so at 3rem tall it measures ~3.9rem across. */
-.brand {
+/* Brand lockup — header and footer set the same mark, so they share one recipe and
+   differ only in colour and in `--sign`.
+
+   Sized against the supplied horizontal logo: "ADAM" runs wider than the sign with
+   "by AERVIGIL" tucked under its right edge. The two sizes are set independently —
+   `--sign` and `--wordmark` — because holding an exact width ratio between them would
+   mean either tracking the wordmark out or shrinking the sign, and both look worse than
+   letting the proportion fall where it does.
+
+   The subline is the one derived size — set from `--sign` so that it comes out the same
+   width as the sign at any value of it, reading as a rule under the wordmark rather than
+   a third arbitrary size. Each tracked line ends on a trailing letter-space, pulled back
+   with a negative margin so the wordmark and the subline share a true right edge. */
+.brand,
+.site-footer__mark {
+  --sign: 3rem;
+  --wordmark: 2.125rem;
+  --product-tracking: 0.04em;
+  --company-tracking: 0.02em;
+
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: calc(var(--sign) / 6);
+}
+
+.brand {
   flex-shrink: 0;
 }
 
-.brand__logo {
-  height: 3rem;
+.brand__logo,
+.site-footer__logo {
+  height: var(--sign);
   width: auto;
 }
 
-.brand__lockup {
+.brand__lockup,
+.site-footer__lockup {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   line-height: 1.05;
 }
 
+.brand__product,
+.site-footer__product {
+  margin-right: calc(var(--product-tracking) * -1);
+  font-size: var(--wordmark);
+  font-weight: 700;
+  letter-spacing: var(--product-tracking);
+}
+
+.brand__company,
+.site-footer__company {
+  margin-right: calc(var(--company-tracking) * -1);
+  font-size: calc(var(--sign) * 0.215);
+  font-weight: 500;
+  letter-spacing: var(--company-tracking);
+}
+
+.brand__company-name,
+.site-footer__company-name {
+  text-transform: uppercase;
+}
+
 .brand__product {
   color: var(--c-navy);
-  font-size: 2.4375rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
 }
 
 .brand__company {
   color: var(--c-navy);
-  font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
   opacity: 0.7;
-}
-
-.brand__company-name {
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
 }
 
 .site-nav {
@@ -169,16 +200,9 @@
 
   /* The full-size lockup plus seven nav labels overrun the row here, so the
      brand steps down until the drawer takes over at 68rem. */
-  .brand__logo {
-    height: 2.25rem;
-  }
-
-  .brand__product {
-    font-size: 1.75rem;
-  }
-
-  .brand__company {
-    font-size: 0.5rem;
+  .brand {
+    --sign: 2.25rem;
+    --wordmark: 1.65rem;
   }
 }
 
@@ -394,36 +418,20 @@
   gap: var(--space-xl);
 }
 
-/* The footer mark is sign-only, so the wordmark it used to carry is set as text. */
+/* The footer mark is sign-only, so the wordmark it used to carry is set as text. It runs
+   a little larger than the header's and reverses the colours; the proportions are the
+   shared ones. */
 .site-footer__mark {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.site-footer__logo {
-  height: 3.25rem;
-  width: auto;
-}
-
-.site-footer__lockup {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.05;
+  --sign: 3.25rem;
+  --wordmark: 2.3rem;
 }
 
 .site-footer__product {
   color: var(--c-bg);
-  font-size: 1.375rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
 }
 
 .site-footer__company {
   color: var(--c-muted-dark);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
 }
 
 .site-footer__tagline {

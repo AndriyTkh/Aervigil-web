@@ -20,7 +20,9 @@ export function SiteFooter() {
               />
               <span className="site-footer__lockup">
                 <span className="site-footer__product">{brand.product}</span>
-                <span className="site-footer__company">{brand.lockup}</span>
+                <span className="site-footer__company">
+                  by <span className="site-footer__company-name">{brand.company}</span>
+                </span>
               </span>
             </div>
             <p className="site-footer__tagline">{footer.tagline}</p>
