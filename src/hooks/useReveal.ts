@@ -8,17 +8,26 @@ import { useEffect } from "react";
  * everything is revealed immediately, so content is never hidden behind an effect.
  * `.reveal` starts visible in CSS and is only hidden once `.js-reveal` is on <html>,
  * which keeps the page readable with JavaScript disabled.
+ *
+ * The secondary pages are lazy-loaded, so their `.reveal` elements enter the DOM after
+ * this effect has run. A MutationObserver picks those up; without it they would stay
+ * hidden behind `.js-reveal` forever.
  */
 export function useReveal(): void {
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    const nodes = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
+    const collect = (root: ParentNode) =>
+      Array.from(root.querySelectorAll<HTMLElement>(".reveal"));
 
     if (prefersReducedMotion || typeof IntersectionObserver === "undefined") {
-      nodes.forEach((node) => node.classList.add("is-visible"));
-      return;
+      const revealAll = () =>
+        collect(document).forEach((node) => node.classList.add("is-visible"));
+      revealAll();
+      const mutations = new MutationObserver(revealAll);
+      mutations.observe(document.body, { childList: true, subtree: true });
+      return () => mutations.disconnect();
     }
 
     document.documentElement.classList.add("js-reveal");
@@ -34,7 +43,30 @@ export function useReveal(): void {
       { rootMargin: "0px 0px -12% 0px", threshold: 0.08 },
     );
 
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
+    const observed = new WeakSet<Element>();
+    const track = (nodes: HTMLElement[]) => {
+      for (const node of nodes) {
+        if (observed.has(node)) continue;
+        observed.add(node);
+        observer.observe(node);
+      }
+    };
+
+    track(collect(document));
+    const mutations = new MutationObserver((records) => {
+      for (const record of records) {
+        for (const added of record.addedNodes) {
+          if (!(added instanceof HTMLElement)) continue;
+          if (added.classList.contains("reveal")) track([added]);
+          track(collect(added));
+        }
+      }
+    });
+    mutations.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+      mutations.disconnect();
+    };
   }, []);
 }
