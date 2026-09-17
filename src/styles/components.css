@@ -90,8 +90,9 @@
   padding: 0.875rem var(--gutter);
 }
 
-/* Sized against the supplied horizontal logo: the wordmark is a little under half
-   the sign's height, and "by AerVigil" hangs from the wordmark's right edge. */
+/* Sized against the supplied horizontal logo: "ADAM" runs about twice the sign's
+   width, and "by AERVIGIL" matches the sign's width, hanging from the wordmark's
+   right edge. The sign is 527 x 404, so at 3rem tall it measures ~3.9rem across. */
 .brand {
   display: flex;
   align-items: center;
@@ -113,17 +114,22 @@
 
 .brand__product {
   color: var(--c-navy);
-  font-size: 1.75rem;
+  font-size: 2.4375rem;
   font-weight: 700;
   letter-spacing: 0.04em;
 }
 
 .brand__company {
   color: var(--c-navy);
-  font-size: 0.8125rem;
+  font-size: 0.625rem;
   font-weight: 500;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.02em;
   opacity: 0.7;
+}
+
+.brand__company-name {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .site-nav {
@@ -168,11 +174,11 @@
   }
 
   .brand__product {
-    font-size: 1.25rem;
+    font-size: 1.75rem;
   }
 
   .brand__company {
-    font-size: 0.6875rem;
+    font-size: 0.5rem;
   }
 }
 

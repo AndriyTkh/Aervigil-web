@@ -5,7 +5,7 @@
  * (307) because these pages are expected to come back — drop the entry when its
  * page is reconnected.
  */
-const DISCONNECTED_ROUTES = new Map([["/technology", "/"]]);
+export const DISCONNECTED_ROUTES = new Map();
 
 /** Matches a disconnected route and anything nested under it, ignoring trailing slashes. */
 function disconnectedTarget(pathname) {

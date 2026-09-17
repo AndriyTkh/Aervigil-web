@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { access } from "node:fs/promises";
 import test from "node:test";
-import worker from "../worker/index.js";
+import worker, { DISCONNECTED_ROUTES } from "../worker/index.js";
 
 test("serves existing static assets without a fallback", async () => {
   const calls = [];
@@ -62,24 +62,51 @@ test("does not turn missing API or write requests into the app shell", async () 
 });
 
 test("redirects a disconnected route instead of serving the app shell", async () => {
-  for (const path of ["/technology", "/technology/", "/technology/hardware"]) {
-    let calls = 0;
-    const response = await worker.fetch(
-      new Request(`https://example.test${path}`, { headers: { accept: "text/html" } }),
-      {
-        ASSETS: {
-          fetch: async () => {
-            calls += 1;
-            return new Response("missing", { status: 404 });
+  DISCONNECTED_ROUTES.set("/offline-page", "/");
+  try {
+    for (const path of ["/offline-page", "/offline-page/", "/offline-page/nested"]) {
+      let calls = 0;
+      const response = await worker.fetch(
+        new Request(`https://example.test${path}`, { headers: { accept: "text/html" } }),
+        {
+          ASSETS: {
+            fetch: async () => {
+              calls += 1;
+              return new Response("missing", { status: 404 });
+            },
           },
         },
-      },
-    );
+      );
 
-    assert.equal(response.status, 307);
-    assert.equal(response.headers.get("location"), "https://example.test/");
-    assert.equal(calls, 0, `${path} should not reach the asset binding`);
+      assert.equal(response.status, 307);
+      assert.equal(response.headers.get("location"), "https://example.test/");
+      assert.equal(calls, 0, `${path} should not reach the asset binding`);
+    }
+  } finally {
+    DISCONNECTED_ROUTES.delete("/offline-page");
   }
+});
+
+test("serves reconnected pages such as /technology through the app shell", async () => {
+  assert.equal(DISCONNECTED_ROUTES.size, 0, "no routes should be disconnected in this build");
+  const calls = [];
+  const response = await worker.fetch(
+    new Request("https://example.test/technology", { headers: { accept: "text/html" } }),
+    {
+      ASSETS: {
+        fetch: async (request) => {
+          const url = new URL(request.url);
+          calls.push(url.pathname);
+          return new Response(url.pathname === "/index.html" ? "app" : "missing", {
+            status: url.pathname === "/index.html" ? 200 : 404,
+          });
+        },
+      },
+    },
+  );
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(calls, ["/technology", "/index.html"]);
 });
 
 test("emits the files required by Sites packaging", async () => {

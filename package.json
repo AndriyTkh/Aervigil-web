@@ -9,7 +9,8 @@
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
     "test:sites": "node --test tests/sites-worker.test.mjs",
-    "verify:page": "node scripts/verify-page.mjs"
+    "verify:page": "node scripts/verify-page.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "@fontsource-variable/plus-jakarta-sans": "^5.2.8",

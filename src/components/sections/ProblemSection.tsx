@@ -7,7 +7,14 @@ export function ProblemSection() {
 
   return (
     <section className="section section--dark problem" id="problem" aria-label={problem.label}>
-      <img className="problem__backdrop" src={problem.backdrop} alt="" aria-hidden="true" />
+      <img
+        className="problem__backdrop"
+        src={problem.backdrop}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+      />
       <div className="problem__scrim" aria-hidden="true" />
 
       <div className="container problem__inner">

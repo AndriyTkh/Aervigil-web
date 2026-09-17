@@ -1,352 +1,271 @@
-import {
-  BellRinging,
-  Buildings,
-  FileArrowDown,
-  HouseLine,
-  MapTrifold,
-  PlugsConnected,
-} from "@phosphor-icons/react";
+/* Per-icon entry points: the package barrel pulls in all ~9000 icons, which Vite
+   pre-bundles into a single 6.5 MB module in dev. */
+import { BellRinging } from "@phosphor-icons/react/dist/csr/BellRinging";
+import { DeviceMobile } from "@phosphor-icons/react/dist/csr/DeviceMobile";
+import { FileArrowDown } from "@phosphor-icons/react/dist/csr/FileArrowDown";
+import { HouseLine } from "@phosphor-icons/react/dist/csr/HouseLine";
+import { MapTrifold } from "@phosphor-icons/react/dist/csr/MapTrifold";
+import { PlugsConnected } from "@phosphor-icons/react/dist/csr/PlugsConnected";
+import { Truck } from "@phosphor-icons/react/dist/csr/Truck";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { site } from "../../content/site";
 import { Eyebrow } from "../ui/Eyebrow";
+import { DataFlow } from "../ui/DataFlow";
+
+/**
+ * /technology — the three layers of the system as colour bands laid over a
+ * faded city grid with ambient data packets travelling its lines: the
+ * `/solutions` sector structure, without the drawn route.
+ * Anchors are deep-linkable: `#hardware`, `#software`, `#ai-engine`.
+ */
 
 const FEATURE_ICONS = {
   map: MapTrifold,
-  route: Buildings,
+  fleet: Truck,
   alert: BellRinging,
   report: FileArrowDown,
   passport: HouseLine,
   api: PlugsConnected,
+  mobile: DeviceMobile,
 } as const;
+
+/** Band background + accent per layer, in page order. */
+const LAYER_CHROME = [
+  { id: "hardware", band: "section--mist", accent: "cyan" },
+  { id: "software", band: "section--dark", accent: "navy" },
+  { id: "ai-engine", band: "section--mint", accent: "green" },
+] as const;
+
+type FlowGeometry = {
+  height: number;
+  width: number;
+  /** Minor grid pitch in CSS pixels — `--tech-cell` (2rem) at the live root size. */
+  cell: number;
+  /** Container left edge from the stack's left edge — the grid's x-origin. */
+  originX: number;
+  /** Top of the AI-engine band from the stack top. */
+  greenFrom: number;
+};
+
+/**
+ * The data packets need real geometry to sit on grid lines: the stack's size,
+ * the grid pitch, where the grid's x-origin falls, and where the green band
+ * starts so packets change colour with the surface they cross.
+ */
+function useFlowGeometry() {
+  const stackRef = useRef<HTMLDivElement>(null);
+  const [flow, setFlow] = useState<FlowGeometry>({
+    height: 0,
+    width: 0,
+    cell: 0,
+    originX: 0,
+    greenFrom: 0,
+  });
+
+  useLayoutEffect(() => {
+    const stack = stackRef.current;
+    if (!stack) return;
+
+    const measure = () => {
+      const stackBox = stack.getBoundingClientRect();
+      if (stackBox.height === 0) return;
+
+      // `--tech-cell` is authored in rem; custom properties come back unresolved.
+      const rootPx = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      const cellRaw = getComputedStyle(stack).getPropertyValue("--tech-cell").trim();
+      const cell = (parseFloat(cellRaw) || 2) * (cellRaw.endsWith("rem") ? rootPx : 1);
+
+      const inner = stack.querySelector(".tech-layer__inner");
+      const originX = inner ? inner.getBoundingClientRect().left - stackBox.left : 0;
+      const ai = stack.querySelector("#ai-engine");
+      const greenFrom = ai ? ai.getBoundingClientRect().top - stackBox.top : stackBox.height;
+
+      setFlow({ height: stackBox.height, width: stackBox.width, cell, originX, greenFrom });
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(stack);
+    return () => observer.disconnect();
+  }, []);
+
+  return { stackRef, flow };
+}
+
+/** Deep links land rather than travel: the page renders after the anchor pass. */
+function useHashLanding() {
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    document.getElementById(hash)?.scrollIntoView({ behavior: "instant" });
+  }, []);
+}
 
 export function TechnologyPage() {
   const { technology } = site;
-  const { intro, hardware, software, analytics } = technology;
+  const { stackRef, flow } = useFlowGeometry();
+  useHashLanding();
 
   return (
-    <main className="tech-page" id="main">
-      <section
-        className="tech-layer tech-layer--hardware"
-        id="hardware"
-        aria-labelledby="hardware-title"
-      >
-        <div className="tech-route" aria-hidden="true">
-          <span className="tech-route__node" />
-        </div>
-
-        <div className="container tech-intro">
-          <Eyebrow>{intro.eyebrow}</Eyebrow>
-          <h1 className="tech-intro__title">
-            {intro.title.map((line) => (
-              <span key={line}>{line}</span>
+    <main id="main">
+      <section className="section tech-intro" id="hero" aria-labelledby="technology-title">
+        <div className="container">
+          <Eyebrow>{technology.eyebrow}</Eyebrow>
+          <h1 className="section__title section__title--lg" id="technology-title">
+            {technology.title.map((line) => (
+              <span className="section__title-line" key={line}>
+                {line}
+              </span>
             ))}
           </h1>
-          <p className="tech-intro__lede">{intro.lede}</p>
-
-          <nav className="tech-index" aria-label={intro.navLabel}>
-            {intro.layers.map((layer, index) => (
-              <a className="tech-index__item" href={layer.href} key={layer.href}>
-                <span className="tech-index__number">0{index + 1}</span>
-                <span>
-                  <strong>{layer.label}</strong>
-                  <small>{layer.phase}</small>
-                </span>
-              </a>
-            ))}
-          </nav>
-        </div>
-
-        <div className="container tech-chapter tech-chapter--hardware">
-          <ChapterHeading
-            phase={hardware.phase}
-            title={hardware.title}
-            headline={hardware.headline}
-            body={hardware.body}
-            titleId="hardware-title"
-          />
-
-          <figure className="hardware-figure reveal">
-            <div className="hardware-figure__stage">
-              <span className="hardware-figure__air hardware-figure__air--in" aria-hidden="true" />
-              <img src={hardware.image} alt={hardware.imageAlt} />
-              <span className="hardware-figure__air hardware-figure__air--out" aria-hidden="true" />
-            </div>
-            <figcaption>
-              <span>{hardware.caption}</span>
-              <strong>{hardware.status}</strong>
-            </figcaption>
-          </figure>
-
-          <div className="hardware-specs reveal">
-            <div className="hardware-specs__methods">
-              <p className="tech-label">{hardware.methodLabel}</p>
-              <dl>
-                {hardware.methods.map((method) => (
-                  <div className="hardware-method" key={method.name}>
-                    <dt>{method.name}</dt>
-                    <dd>{method.detail}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-
-            <div className="hardware-specs__engineering">
-              <p className="tech-label">{hardware.engineeringLabel}</p>
-              <div className="engineering-grid">
-                {hardware.engineering.map((item) => (
-                  <article className="engineering-item" key={item.title}>
-                    <span className="engineering-item__dot" aria-hidden="true" />
-                    <h3>{item.title}</h3>
-                    <p>{item.body}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <p className="tech-disclosure reveal">{hardware.disclosure}</p>
+          <p className="section__lede">{technology.lede}</p>
         </div>
       </section>
 
-      <section
-        className="tech-layer tech-layer--software"
-        id="software"
-        aria-labelledby="software-title"
-      >
-        <div className="tech-route" aria-hidden="true">
-          <span className="tech-route__node" />
-        </div>
+      <div className="tech-layers" ref={stackRef}>
+        <DataFlow
+          height={flow.height}
+          width={flow.width}
+          cell={flow.cell}
+          originX={flow.originX}
+          greenFrom={flow.greenFrom}
+        />
+        <HardwareLayer />
+        <SoftwareLayer />
+        <AiLayer />
+      </div>
 
-        <div className="container tech-chapter tech-chapter--software">
-          <ChapterHeading
-            phase={software.phase}
-            title={software.title}
-            headline={software.headline}
-            body={software.body}
-            titleId="software-title"
-          />
-
-          <SoftwareConsole visual={software.visual} />
-
-          <div className="software-features reveal">
-            <p className="tech-label">{software.featureLabel}</p>
-            <div className="software-features__grid">
-              {software.features.map((feature) => {
-                const Icon = FEATURE_ICONS[feature.icon];
-                return (
-                  <article className="software-feature" key={feature.title}>
-                    <Icon aria-hidden="true" size={24} weight="duotone" />
-                    <h3>{feature.title}</h3>
-                    <p>{feature.body}</p>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-
-          <p className="tech-disclosure tech-disclosure--dark reveal">{software.disclosure}</p>
-        </div>
-      </section>
-
-      <section
-        className="tech-layer tech-layer--analytics"
-        id="analytics"
-        aria-labelledby="analytics-title"
-      >
-        <div className="tech-route" aria-hidden="true">
-          <span className="tech-route__node" />
-        </div>
-
-        <div className="container tech-chapter tech-chapter--analytics">
-          <ChapterHeading
-            phase={analytics.phase}
-            title={analytics.title}
-            headline={analytics.headline}
-            body={analytics.body}
-            titleId="analytics-title"
-          />
-
-          <div className="analytics-overview reveal">
-            <AnalyticsSignal visual={analytics.visual} />
-            <div className="analytics-metrics">
-              {analytics.metrics.map((metric) => (
-                <div className="analytics-metric" key={metric.label}>
-                  <strong>{metric.value}</strong>
-                  <span>{metric.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="analytics-pipeline reveal">
-            <p className="tech-label">{analytics.stagesLabel}</p>
-            <ol>
-              {analytics.stages.map((stage) => (
-                <li className="analytics-stage" key={stage.step}>
-                  <span>{stage.step}</span>
-                  <h3>{stage.title}</h3>
-                  <p>{stage.body}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          <div className="analytics-close reveal">
-            <p>{analytics.note}</p>
-            <a className="btn btn--primary" href={analytics.cta.href}>
-              {analytics.cta.label}
-            </a>
-          </div>
+      <section className="section section--mint tech-cta" aria-labelledby="tech-cta-title">
+        <div className="container">
+          <h2 className="section__title section__title--sm" id="tech-cta-title">
+            {technology.cta.title}
+          </h2>
+          <p className="section__lede">{technology.cta.body}</p>
+          <a className="btn btn--primary" href={technology.cta.href}>
+            {technology.cta.label}
+          </a>
         </div>
       </section>
     </main>
   );
 }
 
-function ChapterHeading({
-  phase,
+/** Shared band chrome: the layer number, the heading and the lede. */
+function LayerShell({
+  id,
+  num,
   title,
-  headline,
-  body,
-  titleId,
+  lede,
+  children,
 }: {
-  phase: string;
+  id: (typeof LAYER_CHROME)[number]["id"];
+  num: string;
   title: string;
-  headline: string;
-  body: string;
-  titleId: string;
+  lede: string;
+  children: React.ReactNode;
 }) {
+  const chrome = LAYER_CHROME.find((entry) => entry.id === id)!;
+  const titleId = `tech-${id}-title`;
+
   return (
-    <header className="tech-heading reveal">
-      <div className="tech-heading__chapter">
-        <span>{phase}</span>
-        <h2 id={titleId}>{title}</h2>
+    <section
+      className={`section ${chrome.band} tech-layer tech-layer--${chrome.accent}`}
+      id={id}
+      aria-labelledby={titleId}
+    >
+      <div className="container tech-layer__inner">
+        <div className="tech-layer__content reveal">
+          <p className="tech-layer__num">{num}</p>
+          <h2 className="section__title section__title--sm" id={titleId}>
+            {title}
+          </h2>
+          <p className="tech-layer__lede">{lede}</p>
+          {children}
+        </div>
       </div>
-      <div className="tech-heading__copy">
-        <p className="tech-heading__headline">{headline}</p>
-        <p className="tech-heading__body">{body}</p>
-      </div>
-    </header>
+    </section>
   );
 }
 
-function SoftwareConsole({ visual }: { visual: (typeof site.technology.software)["visual"] }) {
+function HardwareLayer() {
+  const { hardware } = site.technology;
+
   return (
-    <figure className="software-console reveal" aria-label={visual.product}>
-      <div className="software-console__bar">
-        <div className="software-console__brand">
-          <span aria-hidden="true" />
-          <strong>{visual.product}</strong>
+    <LayerShell id="hardware" num="01" title={hardware.title} lede={hardware.lede}>
+      <div className="tech-hardware">
+        <div className="tech-hardware__specs">
+          <p className="tech-layer__label">{hardware.methodsLabel}</p>
+          <ul className="tech-methods">
+            {hardware.methods.map((entry) => (
+              <li className="tech-method" key={entry.method}>
+                <span className="tech-method__name">{entry.method}</span>
+                <span className="tech-method__body">{entry.body}</span>
+              </li>
+            ))}
+          </ul>
+
+          <p className="tech-layer__label tech-layer__label--spaced">{hardware.systemsLabel}</p>
+          <ul className="tech-systems">
+            {hardware.systems.map((entry) => (
+              <li className="tech-system" key={entry.title}>
+                <span className="tech-system__name">{entry.title}</span>
+                <span className="tech-system__body">{entry.body}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-        <p>
-          <span aria-hidden="true" />
-          {visual.status}
-        </p>
+
+        <figure className="tech-figure">
+          <img src={hardware.figure.src} alt={hardware.figure.alt} loading="lazy" />
+          <figcaption className="tech-figure__caption">{hardware.figure.caption}</figcaption>
+        </figure>
       </div>
 
-      <div className="software-console__body">
-        <aside className="software-console__rail" aria-hidden="true">
-          <span className="is-active" />
-          <span />
-          <span />
-          <span />
-        </aside>
+      <p className="tech-hardware__operation">{hardware.operation}</p>
+      <p className="tech-callout">{hardware.certification}</p>
+    </LayerShell>
+  );
+}
 
-        <div className="software-console__workspace">
-          <div className="software-console__heading">
+function SoftwareLayer() {
+  const { software } = site.technology;
+
+  return (
+    <LayerShell id="software" num="02" title={software.title} lede={software.lede}>
+      <ul className="tech-features">
+        {software.features.map((feature) => {
+          const Icon = FEATURE_ICONS[feature.icon as keyof typeof FEATURE_ICONS];
+          return (
+            <li className="tech-feature" key={feature.title}>
+              <Icon className="tech-feature__icon" weight="light" aria-hidden="true" />
+              <h3 className="tech-feature__title">{feature.title}</h3>
+              <p className="tech-feature__body">{feature.body}</p>
+            </li>
+          );
+        })}
+      </ul>
+      <p className="tech-disclaimer">{software.disclaimer}</p>
+    </LayerShell>
+  );
+}
+
+function AiLayer() {
+  const { ai } = site.technology;
+
+  return (
+    <LayerShell id="ai-engine" num="03" title={ai.title} lede={ai.lede}>
+      <ol className="tech-steps">
+        {ai.steps.map((step) => (
+          <li className="tech-step" key={step.num}>
+            <span className="tech-step__num">{step.num}</span>
             <div>
-              <strong>{visual.city}</strong>
-              <span>{visual.timestamp}</span>
+              <h3 className="tech-step__title">{step.title}</h3>
+              <p className="tech-step__body">{step.body}</p>
             </div>
-            <span className="software-console__filter">{visual.filter}</span>
-          </div>
-
-          <div className="software-console__grid">
-            <div className="console-map">
-              <div className="console-map__streets" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-                <span />
-                <span />
-                <i />
-                <i />
-                <i />
-              </div>
-              <div className="console-map__route" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-                <span />
-              </div>
-              <div className="console-map__metric">
-                <small>{visual.mapLabel}</small>
-                <strong>{visual.mapValue}</strong>
-              </div>
-            </div>
-
-            <div className="console-side">
-              <div className="console-readings">
-                {visual.readings.map((reading) => (
-                  <div className={`console-reading console-reading--${reading.tone}`} key={reading.label}>
-                    <span>{reading.label}</span>
-                    <strong>{reading.value}</strong>
-                    <small>{reading.unit}</small>
-                  </div>
-                ))}
-              </div>
-
-              <div className="console-chart">
-                <div>
-                  <small>{visual.chartLabel}</small>
-                  <strong>{visual.chartValue}</strong>
-                </div>
-                <div className="console-chart__bars" aria-hidden="true">
-                  {Array.from({ length: 12 }, (_, index) => (
-                    <span key={index} />
-                  ))}
-                </div>
-              </div>
-
-              <div className="console-report">
-                <FileArrowDown aria-hidden="true" size={20} />
-                <span>{visual.report}</span>
-                <strong aria-hidden="true">→</strong>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </figure>
-  );
-}
-
-function AnalyticsSignal({ visual }: { visual: (typeof site.technology.analytics)["visual"] }) {
-  return (
-    <figure className="analytics-signal" aria-label={visual.label}>
-      <div className="analytics-signal__input">
-        <span>{visual.input}</span>
-        <div aria-hidden="true">
-          {Array.from({ length: 9 }, (_, index) => (
-            <i key={index} />
-          ))}
-        </div>
-      </div>
-
-      <div className="analytics-signal__core" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-        <i />
-      </div>
-
-      <div className="analytics-signal__context">
-        <span>{visual.context}</span>
-      </div>
-
-      <figcaption>
-        <small>{visual.label}</small>
-        <strong>{visual.output}</strong>
-      </figcaption>
-    </figure>
+          </li>
+        ))}
+      </ol>
+      <p className="tech-disclaimer">{ai.note}</p>
+    </LayerShell>
   );
 }

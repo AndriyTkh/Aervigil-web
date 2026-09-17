@@ -54,10 +54,10 @@ export const site = {
     product: "ADAM",
     company: "AerVigil",
     lockup: "by AerVigil",
-    logoColor: "/assets/adam-logo-color.svg",
-    logoSign: "/assets/adam-sign.svg",
-    logoWhite: "/assets/adam-logo-white.svg",
-    logoSignLight: "/assets/adam-sign-light.svg",
+    logoColor: "/assets/home/brand/adam-logo-color.svg",
+    logoSign: "/assets/home/brand/adam-sign.svg",
+    logoWhite: "/assets/home/brand/adam-logo-white.svg",
+    logoSignLight: "/assets/home/brand/adam-sign-light.svg",
     linkedin: "https://www.linkedin.com/",
   },
 
@@ -65,7 +65,7 @@ export const site = {
     /* Hrefs are root-relative so they resolve from both `/` and `/solutions`. */
     links: [
       { label: "Problem", href: "/#problem" },
-      { label: "Technology", href: "/#solution" },
+      { label: "Technology", href: "/technology" },
       { label: "Why ADAM", href: "/#why" },
       { label: "Solutions", href: "/solutions" },
       { label: "See It in Action", href: "/#demo" },
@@ -86,7 +86,7 @@ export const site = {
     body: "ADAM is a mobile, AI-driven air monitoring system in development by AerVigil — designed to ride on partner vehicles and read the air street by street.",
     primaryCta: { label: "See it in action", href: "#demo" },
     secondaryCta: { label: "How ADAM works", href: "#solution" },
-    image: "/assets/illustrations/hero-moving-lab.png",
+    image: "/assets/home/hero-moving-lab.webp",
     imageAlt: "ADAM sensor on a partner vehicle tracing a measurement route through a city",
   },
 
@@ -94,7 +94,7 @@ export const site = {
     eyebrow: "The problem",
     /** Sector 2 of the brief is the stat wall itself — the lead figure carries the heading weight. */
     label: "Air pollution in Europe, in numbers",
-    backdrop: "/assets/polluted-city.jpg",
+    backdrop: "/assets/home/polluted-city.webp",
     stats: [
       {
         lead: true,
@@ -149,7 +149,7 @@ export const site = {
       },
     ],
     figure: {
-      image: "/assets/adam-hardware-closed.jpg",
+      image: "/assets/home/adam-hardware-closed.webp",
       alt: "ADAM rooftop sensing unit — studio render of the closed enclosure",
       caption: "ADAM unit · enclosure prototype",
       status: "in development",
@@ -164,31 +164,31 @@ export const site = {
         num: "01",
         title: "Partner fleet",
         body: "ADAM units mount on the roofs of taxis, delivery and service vehicles already on the road.",
-        icon: "/assets/icons/process/01-partner-fleet.png",
+        icon: "/assets/home/icons/process/01-partner-fleet.webp",
       },
       {
         num: "02",
         title: "Mobile sensing",
         body: "Sensors read CO, CO₂, NO, NO₂, NOₓ, NH₃, O₃, SO₂, H₂S and TRS, plus PM1–PM10 and total suspended particulates — continuously as the vehicle moves, and while parked.",
-        icon: "/assets/icons/process/02-mobile-sensing.png",
+        icon: "/assets/home/icons/process/02-mobile-sensing.webp",
       },
       {
         num: "03",
         title: "AI validation",
         body: "Models cross-check every measurement against context data: location, speed, traffic, weather.",
-        icon: "/assets/icons/process/03-data-quality.png",
+        icon: "/assets/home/icons/process/03-data-quality.webp",
       },
       {
         num: "04",
         title: "City map",
         body: "Validated data resolves into a street-level air quality layer covering the whole city.",
-        icon: "/assets/icons/process/04-city-map.png",
+        icon: "/assets/home/icons/process/04-city-map.webp",
       },
       {
         num: "05",
         title: "Reporting",
         body: "Quality-checked data feeds planning, public health and regulatory reporting workflows.",
-        icon: "/assets/icons/process/05-reporting.png",
+        icon: "/assets/home/icons/process/05-reporting.webp",
       },
     ] as ProcessStep[],
   },
@@ -201,37 +201,37 @@ export const site = {
         num: "01",
         title: "Full city coverage",
         body: "Vehicles cover 100% of city streets — not just 10 fixed points. Every street, every neighborhood, every hour.",
-        icon: "/assets/icons/capabilities/broader-spatial-context.png",
+        icon: "/assets/home/icons/capabilities/broader-spatial-context.webp",
       },
       {
         num: "02",
         title: "AI-validated data",
         body: "Up to 96% accuracy on validated direct measurements. Over 100,000 measurements per vehicle per year continuously improve our models.",
-        icon: "/assets/icons/capabilities/visible-data-quality.png",
+        icon: "/assets/home/icons/capabilities/visible-data-quality.webp",
       },
       {
         num: "03",
         title: "CSRD-ready reports",
         body: "Auto-generated ESRS E1/E2 compliant reports accepted by EU regulators, auditors and banks. One click — the report is ready.",
-        icon: "/assets/icons/capabilities/reporting-ready-evidence.svg",
+        icon: "/assets/home/icons/capabilities/reporting-ready-evidence.svg",
       },
       {
         num: "04",
         title: "10× more affordable",
         body: "One stationary station costs €50,000–€150,000. ADAM covers an entire city via partner fleets at a fraction of that cost.",
-        icon: "/assets/icons/capabilities/faster-insight.png",
+        icon: "/assets/home/icons/capabilities/faster-insight.webp",
       },
       {
         num: "05",
         title: "EN 15267-4 certification",
         body: "Targeting the only standard that makes mobile air quality data legally recognised for regulatory reporting and ESG audits.",
-        icon: "/assets/icons/capabilities/recognized-quality-path.svg",
+        icon: "/assets/home/icons/capabilities/recognized-quality-path.svg",
       },
       {
         num: "06",
         title: "Asset-light model",
         body: "No proprietary fleet required. We partner with existing taxi and logistics operators — rapid deployment, low capital cost.",
-        icon: "/assets/icons/capabilities/practical-deployment.png",
+        icon: "/assets/home/icons/capabilities/practical-deployment.webp",
       },
     ] as Advantage[],
   },
@@ -243,7 +243,7 @@ export const site = {
     cta: { label: "Open the visual demo", href: "https://adam.aervigil.com" },
     disclaimer:
       "Illustrative demo with simulated data — not a live deployment or certified measurement result.",
-    image: "/assets/adam-kyiv-illustrative-demo.png",
+    image: "/assets/home/adam-kyiv-illustrative-demo.webp",
     imageAlt: "ADAM Kyiv demo interface — simulated air quality heat layer over a city map",
   },
 
@@ -258,7 +258,7 @@ export const site = {
         id: "cities",
         sector: "B2G",
         accent: "cyan",
-        icon: "/assets/icons/audiences/cities-public-agencies-clean.png",
+        icon: "/assets/home/icons/audiences/cities-public-agencies-clean.webp",
         iconAlt: "Line drawing of a civic building with a measurement route",
         title: "Cities & public administrations",
         cases: [
@@ -275,7 +275,7 @@ export const site = {
         id: "industry",
         sector: "B2B",
         accent: "green",
-        icon: "/assets/icons/audiences/industry-logistics-clean.png",
+        icon: "/assets/home/icons/audiences/industry-logistics-clean.webp",
         iconAlt: "Line drawing of a delivery van leaving a depot on a measurement route",
         title: "Business, industry & real estate",
         cases: [
@@ -299,7 +299,7 @@ export const site = {
         id: "citizens",
         sector: "B2C",
         accent: "navy",
-        icon: "/assets/icons/audiences/people-communities-clean.svg",
+        icon: "/assets/home/icons/audiences/people-communities-clean.svg",
         iconAlt: "Line drawing of residents on a street with a measurement route",
         title: "People & communities",
         cases: [
@@ -330,121 +330,123 @@ export const site = {
     },
   },
 
+  /**
+   * /technology — the three layers of the system, in brief revision 2 order:
+   * Hardware, Software, AI engine. Bullet wording follows the brief; the
+   * EN 15267-4 line stays at *targeting*.
+   */
   technology: {
-    intro: {
-      eyebrow: "The ADAM system",
-      title: ["One measurement chain.", "Three layers of intelligence."],
-      lede: "Hardware captures the street. Software makes the network visible. Data analytics turns every route into evidence a city can act on.",
-      navLabel: "Technology sections",
-      layers: [
-        { label: "Hardware", href: "#hardware", phase: "Capture" },
-        { label: "Software", href: "#software", phase: "See" },
-        { label: "Data analytics", href: "#analytics", phase: "Understand" },
-      ],
-    },
+    eyebrow: "Technology",
+    title: ["One measurement chain.", "Three layers."],
+    lede: "Instruments on the roof of a partner vehicle, a platform that makes every reading usable, and an AI engine that turns a year of measurements into decisions.",
 
     hardware: {
-      phase: "01 · Capture",
       title: "Hardware",
-      headline: "A mobile lab, built for the roofline.",
-      body: "A compact, modular sensing platform designed for partner vehicles. Outside air moves through one conditioned sampling path, then reaches every measurement module at the same moment.",
-      image: "/assets/illustrations/ADAM ass(1).JPG",
-      imageAlt: "Engineering render of the modular ADAM rooftop air quality monitoring unit",
-      caption: "ADAM modular rooftop unit · engineering render",
-      status: "Hardware in development",
-      methodLabel: "Measurement suite",
+      lede: "Modular plug-and-play design — compact, lightweight, easy rooftop installation on partner vehicles.",
+      methodsLabel: "Measurement methods",
       methods: [
-        { name: "NDIR", detail: "CO and CO₂ concentration" },
-        { name: "Chemiluminescence", detail: "NO, NO₂, NOₓ, NH₃ and O₃" },
-        { name: "UV fluorescence", detail: "SO₂, H₂S and TRS" },
-        { name: "Optical counting", detail: "PM1, PM2.5, PM5, PM10 and TSP" },
-        { name: "Electrochemical", detail: "Additional pollutant measurement" },
+        { method: "NDIR", body: "CO/CO₂ concentration measurements." },
+        { method: "Chemiluminescence", body: "NO/NO₂/NOx/NH₃/O₃ measurements." },
+        { method: "UV-fluorescence", body: "SO₂/H₂S/TRS measurements." },
+        { method: "Optical counter", body: "PM1/PM2.5/PM5/PM10 and TSP dust monitoring." },
+        { method: "Electrochemical sensors", body: "Additional pollutant measurement." },
       ],
-      engineeringLabel: "Engineered for motion",
-      engineering: [
-        { title: "Continuous sampling", body: "An EHD-based air amplifier maintains high-volume outside-air flow." },
-        { title: "Stable readings", body: "Air is heated to remove moisture while thermoelectric coolers stabilise temperature." },
-        { title: "Always on", body: "A Li-Ion accumulator supports uninterrupted operation when vehicle power is unavailable." },
-        { title: "Plug-and-play", body: "Lightweight sensing blocks simplify rooftop installation, service and future upgrades." },
+      systemsLabel: "Supporting systems",
+      systems: [
+        {
+          title: "Li-Ion accumulator",
+          body: "24/7 uninterrupted operation when vehicle power is unavailable.",
+        },
+        { title: "Thermoelectric coolers", body: "High-precision temperature stabilisation." },
+        { title: "EHD-based air amplifier", body: "Continuous high-volume air sampling." },
       ],
-      disclosure: "Targeting EN 15267-4 certification. ADAM is in development and is not yet a certified measurement system.",
+      operation:
+        "During operation, air is continuously sampled from outside, heated to evaporate moisture and stabilise temperature, then measured simultaneously across all modules.",
+      certification:
+        "Targeting EN 15267-4 certification — data legally recognised for EU regulatory reporting and ESG audits.",
+      figure: {
+        src: "/assets/technology/adam-sensing-unit-render.webp",
+        alt: "Engineering render of the ADAM sensing unit carried on a vehicle roof",
+        caption: "Engineering render — hardware in development.",
+      },
     },
 
     software: {
-      phase: "02 · See",
       title: "Software",
-      headline: "The moving network, made legible.",
-      body: "One operational view connects routes, vehicles and measurement quality. Teams can see where the fleet has measured, inspect street-level conditions and move directly from an alert to a report.",
-      featureLabel: "Operational tools",
+      lede: "One platform for the city that regulates the air, the fleet that measures it and the people who breathe it.",
       features: [
-        { icon: "map", title: "Live city map", body: "Street-level heatmaps refreshed every 5–15 minutes." },
-        { icon: "route", title: "Fleet tracking", body: "Live position and route coverage for every monitoring vehicle." },
-        { icon: "alert", title: "Automated alerts", body: "Notifications when pollutant norms are exceeded." },
-        { icon: "report", title: "Reporting", body: "CSRD and ESRS E1/E2 workflows with PDF and Excel export." },
-        { icon: "passport", title: "ESG building passport", body: "Location evidence for BREEAM, LEED, EU Taxonomy and green finance." },
-        { icon: "api", title: "API and mobile access", body: "Integration with client systems plus personal air-quality tools." },
+        {
+          icon: "map",
+          title: "Real-time city dashboard",
+          body: "Street-level heatmap updated every 5–15 minutes.",
+        },
+        {
+          icon: "fleet",
+          title: "Fleet tracking",
+          body: "Live positions of all monitoring vehicles.",
+        },
+        {
+          icon: "alert",
+          title: "Automated alerts",
+          body: "Notifications when pollutant norms are exceeded.",
+        },
+        {
+          icon: "report",
+          title: "Compliance reporting",
+          body: "Automated CSRD/ESRS E1/E2 report generation with PDF and Excel export.",
+        },
+        {
+          icon: "passport",
+          title: "ESG building passport",
+          body: "Location evidence for BREEAM, LEED, EU Taxonomy and green financing.",
+        },
+        {
+          icon: "api",
+          title: "API access",
+          body: "Integration into client systems, navigation platforms and insurance tools.",
+        },
+        {
+          icon: "mobile",
+          title: "Mobile app",
+          body: "Personal air quality alerts, clean air route planning and pollution exposure insights.",
+        },
       ],
-      visual: {
-        product: "ADAM City Console",
-        status: "Network online",
-        city: "Kyiv pilot view",
-        timestamp: "Updated 09:42",
-        filter: "AQI · EU",
-        mapLabel: "Route coverage",
-        mapValue: "84%",
-        chartLabel: "NO₂ · route average",
-        chartValue: "31 µg/m³",
-        readings: [
-          { label: "PM2.5", value: "18", unit: "µg/m³", tone: "good" },
-          { label: "NO₂", value: "31", unit: "µg/m³", tone: "watch" },
-          { label: "O₃", value: "46", unit: "µg/m³", tone: "good" },
-        ],
-        report: "Daily evidence pack ready",
-      },
-      disclosure: "Illustrative interface with simulated data — not a live deployment or certified measurement result.",
+      disclaimer: "Interface previews are illustrative and use simulated data.",
     },
 
-    analytics: {
-      phase: "03 · Understand",
-      title: "Data analytics",
-      headline: "From raw readings to a city-scale signal.",
-      body: "Each vehicle can produce more than 100,000 measurements per year. The analytics layer is designed to clean, contextualise and model that stream so decision-makers can work with evidence rather than noise.",
-      stagesLabel: "Analysis pipeline",
-      stages: [
+    ai: {
+      title: "AI engine",
+      lede: "Over 100,000 measurements per vehicle per year — processed through algorithmic validation combined with AI-assisted analysis and forecasting in real time.",
+      steps: [
         {
-          step: "01",
-          title: "Validate",
-          body: "Filter contaminated readings, compare nearby reference stations and label validity.",
+          num: "01",
+          title: "Data validation",
+          body: "Filters dirty readings from tunnels, parking and heavy traffic. Cross-checks with nearby certified stations. Labels data by validity level.",
         },
         {
-          step: "02",
-          title: "Model the city",
-          body: "Find hotspots and recurring patterns across weather, traffic, time and place.",
+          num: "02",
+          title: "City analysis",
+          body: "Identifies pollution hotspots and recurring patterns. Correlates data with wind, humidity and temperature. Detects morning peaks, seasonality and day/night cycles.",
         },
         {
-          step: "03",
-          title: "Forecast",
-          body: "Develop 24–72 hour location forecasts and detect anomalous pollution events.",
+          num: "03",
+          title: "Forecasting",
+          body: "24–72h air quality forecasts per location. Predicts norm exceedances before they occur. District-level exposure analysis and mapping of anomalous pollution events.",
         },
         {
-          step: "04",
-          title: "Recommend",
-          body: "Support sensor placement, traffic decisions, urban planning and evidence workflows.",
+          num: "04",
+          title: "Recommendations & optimization",
+          body: "Where to place stationary sensors. Traffic rerouting that reduces pollution. Urban planning inputs for schools, parks and offices. Auto-generated CSRD/ESRS reports.",
         },
       ],
-      metrics: [
-        { value: "100K+", label: "measurements per vehicle / year" },
-        { value: "5–15 min", label: "target heatmap refresh" },
-        { value: "24–72h", label: "forecast horizon in development" },
-      ],
-      visual: {
-        label: "Validated city signal",
-        input: "Raw mobile readings",
-        context: "Weather · traffic · location",
-        output: "Decision-ready evidence",
-      },
-      note: "Street-level simulation and forecasting are long-term development goals following first large-scale deployment.",
-      cta: { label: "Discuss a pilot", href: "/#contact" },
+      note: "Forecasting and street-level simulation are development goals, planned after the first large-scale deployment.",
+    },
+
+    cta: {
+      title: "Want ADAM measuring your streets?",
+      body: "Join the first pilot network — as a city, a fleet operator or a data partner.",
+      label: "Discuss a pilot",
+      href: "/#contact",
     },
   },
   company: {
@@ -459,7 +461,7 @@ export const site = {
     },
     backing: {
       eyebrow: "Backed by",
-      logo: "/assets/eu-funded-light.png",
+      logo: "/assets/home/eu-funded-light.webp",
       logoAlt: "Funded by the European Union",
       body: "ADAM received Horizon Europe / European Innovation Council support through a program for Ukrainian technology SMEs and startups.",
     },
@@ -488,12 +490,12 @@ export const site = {
 
   footer: {
     tagline: "Mobile AI-driven air quality monitoring, in development by AerVigil.",
-    skyline: "/assets/illustrations/footer-skyline.png",
+    skyline: "/assets/home/footer-skyline.webp",
     groups: [
       {
         title: "Explore",
         links: [
-          { label: "Technology", href: "/#solution" },
+          { label: "Technology", href: "/technology" },
           { label: "Why ADAM", href: "/#why" },
           { label: "Solutions", href: "/solutions" },
           { label: "See It in Action", href: "/#demo" },

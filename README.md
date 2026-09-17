@@ -27,6 +27,7 @@ Opens on <http://localhost:5173>.
 | `pnpm typecheck` | `tsc --noEmit` |
 | `pnpm test:sites` | Node test for the Cloudflare-style worker in `worker/` |
 | `pnpm verify:page` | Playwright smoke check + screenshots (needs `pnpm dev` running) |
+| `pnpm optimize:images` | Re-encodes `public/assets/` masters to right-sized WebP (needs ffmpeg) |
 
 ## Layout
 
@@ -41,13 +42,14 @@ src/
     ui/                    Eyebrow, Highlight, RouteLine, RouteJunction
   hooks/                   useReveal (scroll reveal), useScrolled (header state)
   styles/                  tokens → base → layout → components → sections
-public/assets/             Images, icons and illustrations served as-is
+public/assets/             Images grouped per page: home/, technology/
 scripts/                   Build helper + Playwright verification
 worker/                    Static-asset worker with SPA fallback
 tests/                     Worker test
 docs/                      Design system, content map, architecture, assets
 aervigil-webpage-design/   The approved Claude design — visual source of truth
 _ref/                      Original client copy brief (TЗ)
+unused-assets/             Design masters and images the site does not ship
 ```
 
 Copy never lives in JSX — it lives in [`src/content/site.ts`](src/content/site.ts).

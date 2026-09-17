@@ -12,3 +12,6 @@ dist/
 
 .vercel
 .env*.local
+
+# Local agent telemetry
+artifacts/

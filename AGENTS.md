@@ -85,7 +85,7 @@ deeper detail lives in [docs/](docs/).
   the redirect will shadow the page. The decisions below apply if it is brought back.
 - `/technology` has exactly three anchored product sections: Hardware, Software and Data
   analytics. The page intro belongs to Hardware rather than adding a fourth section.
-- `public/assets/illustrations/ADAM ass(1).JPG` is the primary Hardware visual and must
+- `public/assets/technology/adam-sensing-unit-render.jpg` is the primary Hardware visual and must
   remain described as an engineering render of hardware in development.
 - The supplied three-column screenshot is a graphics reference only. The Technology page
   uses its own vertical measurement-chain layout, carrying the homepage cyan-to-green route

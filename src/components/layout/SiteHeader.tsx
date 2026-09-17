@@ -46,7 +46,9 @@ export function SiteHeader() {
             <img className="brand__logo" src={brand.logoSign} alt="" />
             <span className="brand__lockup" aria-hidden="true">
               <span className="brand__product">{brand.product}</span>
-              <span className="brand__company">{brand.lockup}</span>
+              <span className="brand__company">
+                by <span className="brand__company-name">{brand.company}</span>
+              </span>
             </span>
           </a>
 

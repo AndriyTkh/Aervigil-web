@@ -1,6 +1,6 @@
+import { Suspense, lazy } from "react";
 import { SiteFooter } from "./components/layout/SiteFooter";
 import { SiteHeader } from "./components/layout/SiteHeader";
-import { SolutionsPage } from "./components/pages/SolutionsPage";
 import { CompanySection } from "./components/sections/CompanySection";
 import { ContactSection } from "./components/sections/ContactSection";
 import { DemoSection } from "./components/sections/DemoSection";
@@ -14,12 +14,25 @@ import { WhyAdamSection } from "./components/sections/WhyAdamSection";
 import { useReveal } from "./hooks/useReveal";
 
 /**
- * Two static pages share one bundle: the homepage and /solutions. Navigation
- * between them is plain full-page loads (both Vercel and the Sites worker
- * rewrite unknown paths to index.html), so the "router" is just a pathname
- * check at load time — no client-side navigation state to manage.
+ * Three static pages — the homepage, /solutions and /technology. Navigation between them
+ * is plain full-page loads (both Vercel and the Sites worker rewrite unknown paths to
+ * index.html), so the "router" is just a pathname check at load time — no client-side
+ * navigation state to manage.
  */
 const pagePath = window.location.pathname.replace(/\/+$/, "");
+
+/**
+ * The homepage is the entry point for nearly all traffic, so the two secondary pages are
+ * split into their own chunks rather than riding along in its bundle. Each one is a plain
+ * full-page load, so its chunk is requested immediately and only the page it belongs to
+ * pays for it.
+ */
+const SolutionsPage = lazy(() =>
+  import("./components/pages/SolutionsPage").then((m) => ({ default: m.SolutionsPage })),
+);
+const TechnologyPage = lazy(() =>
+  import("./components/pages/TechnologyPage").then((m) => ({ default: m.TechnologyPage })),
+);
 
 /**
  * Homepage section order matches the approved design:
@@ -32,7 +45,13 @@ export function App() {
     <>
       <SiteHeader />
       {pagePath === "/solutions" ? (
-        <SolutionsPage />
+        <Suspense fallback={null}>
+          <SolutionsPage />
+        </Suspense>
+      ) : pagePath === "/technology" ? (
+        <Suspense fallback={null}>
+          <TechnologyPage />
+        </Suspense>
       ) : (
         <>
           <HeroSection />
