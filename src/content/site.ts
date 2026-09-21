@@ -42,6 +42,19 @@ export type Audience = {
   cases: AudienceCase[];
 };
 
+/** One named founder card in the team section. */
+export type TeamMember = {
+  name: string;
+  /** Title line — role plus co-founder status. */
+  role: string;
+  /** Degree line, kept separate so it can sit in muted type. */
+  credential: string;
+  /** What this founder owns day to day. */
+  focus: string;
+  photo: string;
+  photoAlt: string;
+};
+
 export type NewsItem = {
   year: string;
   title: string;
@@ -459,14 +472,56 @@ export const site = {
     },
     team: {
       eyebrow: "Team",
-      body: "AerVigil is assembling a team across sensing hardware, machine learning and urban data — building ADAM through a funded development program with pilot conversations under way.",
-      note: "Team and pilot network now forming →",
+      body: "AerVigil brings together sensing hardware, machine learning and urban data — building ADAM through a funded development program with pilot conversations under way.",
+      note: "Pilot network now forming →",
     },
     backing: {
       eyebrow: "Backed by",
       logo: "/assets/home/eu-funded-light.webp",
       logoAlt: "Funded by the European Union",
       body: "ADAM received Horizon Europe / European Innovation Council support through a program for Ukrainian technology SMEs and startups.",
+    },
+  },
+
+  team: {
+    eyebrow: "Team",
+    title: "The people building ADAM",
+    lede: "Three co-founders across radio physics, chemistry and ecology — supported by an in-house engineering, software and design bench.",
+    members: [
+      {
+        name: "Sergiy Tkhorenko",
+        role: "CEO, Co-Founder",
+        credential: "MSc. Radio Physics and Electronics",
+        focus: "Team development, investments",
+        photo: "/assets/home/team/sergiy-tkhorenko.webp",
+        photoAlt: "Sergiy Tkhorenko, CEO and Co-Founder of AerVigil",
+      },
+      {
+        name: "Oksana Rudyk",
+        role: "CSMO, Co-Founder",
+        credential: "MSc. Chemistry",
+        focus: "Sales and marketing",
+        photo: "/assets/home/team/oksana-rudyk.webp",
+        photoAlt: "Oksana Rudyk, CSMO and Co-Founder of AerVigil",
+      },
+      {
+        name: "Olga Tkhorenko",
+        role: "CTO, Co-Founder",
+        credential: "MSc. Chemistry, Biology, Ecology",
+        focus: "R&D, production",
+        photo: "/assets/home/team/olga-tkhorenko.webp",
+        photoAlt: "Olga Tkhorenko, CTO and Co-Founder of AerVigil",
+      },
+    ] as TeamMember[],
+    /** The slide's fourth cell: the bench behind the founders, kept as a plain list. */
+    bench: {
+      title: "Other team members expertise",
+      items: [
+        "2 engineers for new equipment & technology implementation",
+        "2 software developers, R&D",
+        "Finance and accounting",
+        "Graphic designer",
+      ],
     },
   },
 

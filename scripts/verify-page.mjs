@@ -31,6 +31,7 @@ const EXPECTED_SECTIONS = [
   "demo",
   "network",
   "company",
+  "team",
   "news",
   "contact",
 ];

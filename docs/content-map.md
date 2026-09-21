@@ -18,8 +18,9 @@ To change wording, edit `site.ts`. Nothing else needs touching.
 | 6 | `demo` | [DemoSection](../src/components/sections/DemoSection.tsx) | `site.demo` | `adam-kyiv-illustrative-demo.png` |
 | 7 | `network` | [NetworkSection](../src/components/sections/NetworkSection.tsx) | `site.network` (teaser cards; full text on `/solutions`) | `icons/audiences/*-clean.png` |
 | 8 | `company` | [CompanySection](../src/components/sections/CompanySection.tsx) | `site.company` | `eu-funded-light.png` |
-| 9 | `news` | [NewsSection](../src/components/sections/NewsSection.tsx) | `site.news` | — |
-| 10 | `contact` | [ContactSection](../src/components/sections/ContactSection.tsx) | `site.contact` | — |
+| 9 | `team` | [TeamSection](../src/components/sections/TeamSection.tsx) | `site.team` | `team/*.webp` |
+| 10 | `news` | [NewsSection](../src/components/sections/NewsSection.tsx) | `site.news` | — |
+| 11 | `contact` | [ContactSection](../src/components/sections/ContactSection.tsx) | `site.contact` | — |
 | — | — | [SiteHeader](../src/components/layout/SiteHeader.tsx) | `site.nav`, `site.brand` | `adam-logo-color.svg` |
 | — | — | [SiteFooter](../src/components/layout/SiteFooter.tsx) | `site.footer` | `adam-logo-white.svg`, `eu-funded-dark.png`, `illustrations/footer-skyline.png` |
 

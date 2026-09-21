@@ -10,6 +10,7 @@ import { NetworkSection } from "./components/sections/NetworkSection";
 import { NewsSection } from "./components/sections/NewsSection";
 import { ProblemSection } from "./components/sections/ProblemSection";
 import { SolutionSection } from "./components/sections/SolutionSection";
+import { TeamSection } from "./components/sections/TeamSection";
 import { WhyAdamSection } from "./components/sections/WhyAdamSection";
 import { useReveal } from "./hooks/useReveal";
 
@@ -36,7 +37,7 @@ const TechnologyPage = lazy(() =>
 
 /**
  * Homepage section order matches the approved design:
- * hero → problem → solution → how it works → why → demo → pilot → company → news → contact.
+ * hero → problem → solution → how it works → why → demo → pilot → company → team → news → contact.
  */
 export function App() {
   useReveal();
@@ -63,6 +64,7 @@ export function App() {
             <DemoSection />
             <NetworkSection />
             <CompanySection />
+            <TeamSection />
             <NewsSection />
             <ContactSection />
           </main>
