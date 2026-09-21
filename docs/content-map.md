@@ -89,7 +89,7 @@ root-relative (`/#problem`) so they resolve from both pages:
 | Start a conversation (CTA) | `mailto:contact@aervigil.com` |
 
 The footer repeats the same seven labels plus the brochure, and a Connect group with
-the contact email, LinkedIn and Contact. Labels renamed on team feedback, 2026-09-21.
+the contact email and LinkedIn. Labels renamed on team feedback, 2026-09-21.
 
 ## Claims that carry compliance weight
 

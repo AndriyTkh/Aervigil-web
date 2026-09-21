@@ -516,7 +516,6 @@ export const site = {
         links: [
           { label: "contact@aervigil.com", href: "mailto:contact@aervigil.com" },
           { label: "LinkedIn", href: "https://www.linkedin.com/company/adam-%E2%80%93-ai-driven-air-monitoring/home/" },
-          { label: "Contact", href: "/#contact" },
         ],
       },
     ] as { title: string; columns?: 2; links: NavLink[] }[],
