@@ -498,6 +498,8 @@ export const site = {
     groups: [
       {
         title: "Explore",
+        /* Eight links stacked once made the footer taller than the content above it. */
+        columns: 2,
         links: [
           { label: "Problem", href: "/#problem" },
           { label: "Solution", href: "/technology" },
@@ -517,7 +519,7 @@ export const site = {
           { label: "Contact", href: "/#contact" },
         ],
       },
-    ] as { title: string; links: NavLink[] }[],
+    ] as { title: string; columns?: 2; links: NavLink[] }[],
     legal:
       "© 2026 AerVigil · aervigil.com — ADAM is a development program; demo content is illustrative. Funding acknowledgement wording pending final grant-agreement text.",
   },

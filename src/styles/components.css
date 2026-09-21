@@ -349,7 +349,7 @@
 
 .site-footer__inner {
   position: relative;
-  padding-block: var(--space-xl) var(--space-lg);
+  padding-block: var(--space-lg) var(--space-md);
 }
 
 .site-footer__top {
@@ -373,12 +373,16 @@
   gap: 4rem;
 }
 
-.site-footer__group ul {
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
+.site-footer__links {
+  display: grid;
+  gap: 0.5rem 2.5rem;
   margin-top: 0.625rem;
   font-size: 0.84375rem;
+}
+
+/* Long groups run in two columns so the footer stays about as tall as the brand block. */
+.site-footer__links--2 {
+  grid-template-columns: repeat(2, max-content);
 }
 
 .site-footer__group a {
@@ -398,8 +402,8 @@
 }
 
 .site-footer__legal {
-  margin-top: var(--space-lg);
-  padding-top: 1.25rem;
+  margin-top: var(--space-md);
+  padding-top: 1rem;
   border-top: 1px solid rgb(231 238 242 / 8%);
   font-size: 0.71875rem;
   line-height: 1.6;

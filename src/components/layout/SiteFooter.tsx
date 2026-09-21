@@ -24,7 +24,7 @@ export function SiteFooter() {
             {footer.groups.map((group) => (
               <nav className="site-footer__group" key={group.title} aria-label={group.title}>
                 <h2 className="site-footer__group-title">{group.title}</h2>
-                <ul>
+                <ul className={group.columns === 2 ? "site-footer__links site-footer__links--2" : "site-footer__links"}>
                   {group.links.map((link) => (
                     <li key={link.label}>
                       <a
