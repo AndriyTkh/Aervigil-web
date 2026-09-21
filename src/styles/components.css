@@ -90,77 +90,22 @@
   padding: 0.875rem var(--gutter);
 }
 
-/* Brand lockup — header and footer set the same mark, so they share one recipe and
-   differ only in colour and in `--sign`.
-
-   Sized against the supplied horizontal logo: "ADAM" runs wider than the sign with
-   "by AERVIGIL" tucked under its right edge. The two sizes are set independently —
-   `--sign` and `--wordmark` — because holding an exact width ratio between them would
-   mean either tracking the wordmark out or shrinking the sign, and both look worse than
-   letting the proportion fall where it does.
-
-   The subline is the one derived size — set from `--sign` so that it comes out the same
-   width as the sign at any value of it, reading as a rule under the wordmark rather than
-   a third arbitrary size. Each tracked line ends on a trailing letter-space, pulled back
-   with a negative margin so the wordmark and the subline share a true right edge. */
-.brand,
-.site-footer__mark {
-  --sign: 3rem;
-  --wordmark: 2.125rem;
-  --product-tracking: 0.04em;
-  --company-tracking: 0.02em;
-
+/* Brand — header and footer set the supplied horizontal logo (sign + "ADAM" +
+   "by AerVigil") as one SVG, colour on light and white on dark. One height everywhere:
+   the mark must read the same on a phone, a mid-width laptop and a wide desktop, so no
+   breakpoint steps it down. Below 68rem the nav folds into the drawer, which frees the
+   row; between 68rem and 80rem the nav tightens instead (see below). */
+.brand {
   display: flex;
   align-items: center;
-  gap: calc(var(--sign) / 6);
-}
-
-.brand {
   flex-shrink: 0;
 }
 
 .brand__logo,
 .site-footer__logo {
-  height: var(--sign);
+  display: block;
+  height: var(--brand-h);
   width: auto;
-}
-
-.brand__lockup,
-.site-footer__lockup {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  line-height: 1.05;
-}
-
-.brand__product,
-.site-footer__product {
-  margin-right: calc(var(--product-tracking) * -1);
-  font-size: var(--wordmark);
-  font-weight: 700;
-  letter-spacing: var(--product-tracking);
-}
-
-.brand__company,
-.site-footer__company {
-  margin-right: calc(var(--company-tracking) * -1);
-  font-size: calc(var(--sign) * 0.215);
-  font-weight: 500;
-  letter-spacing: var(--company-tracking);
-}
-
-.brand__company-name,
-.site-footer__company-name {
-  text-transform: uppercase;
-}
-
-.brand__product {
-  color: var(--c-navy);
-}
-
-.brand__company {
-  color: var(--c-navy);
-  opacity: 0.7;
 }
 
 .site-nav {
@@ -198,11 +143,8 @@
     gap: 0.75rem;
   }
 
-  /* The full-size lockup plus seven nav labels overrun the row here, so the
-     brand steps down until the drawer takes over at 68rem. */
-  .brand {
-    --sign: 2.25rem;
-    --wordmark: 1.65rem;
+  .site-nav__link {
+    font-size: var(--fs-xs);
   }
 }
 
@@ -416,22 +358,6 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--space-xl);
-}
-
-/* The footer mark is sign-only, so the wordmark it used to carry is set as text. It runs
-   a little larger than the header's and reverses the colours; the proportions are the
-   shared ones. */
-.site-footer__mark {
-  --sign: 3.25rem;
-  --wordmark: 2.3rem;
-}
-
-.site-footer__product {
-  color: var(--c-bg);
-}
-
-.site-footer__company {
-  color: var(--c-muted-dark);
 }
 
 .site-footer__tagline {

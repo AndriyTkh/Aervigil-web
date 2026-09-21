@@ -3,11 +3,10 @@ import { site } from "../../content/site";
 
 /**
  * Every "get in touch" call to action on the site — header, pilot CTAs on the homepage,
- * /solutions and /technology, and the contact section — opens the visitor's mail client.
- * The recipient is left blank on purpose, matching the design; the subject is shared so
- * incoming mail is easy to spot.
+ * /solutions and /technology, and the contact section — opens the visitor's mail client
+ * addressed to the shared inbox, with one subject so incoming mail is easy to spot.
  */
-export const contactMailto = `mailto:?subject=${encodeURIComponent(site.contact.mailSubject)}`;
+export const contactMailto = `mailto:${site.contact.email}?subject=${encodeURIComponent(site.contact.mailSubject)}`;
 
 type ContactCtaProps = {
   children: ReactNode;

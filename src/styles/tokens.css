@@ -82,6 +82,8 @@
 
   /* Header height, used for scroll-margin so anchors clear the sticky bar */
   --header-h: 4.25rem;
+  /* Horizontal brand logo height — one value for header and footer at every viewport. */
+  --brand-h: 3rem;
 }
 
 @media (width <= 48rem) {

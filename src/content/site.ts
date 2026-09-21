@@ -54,22 +54,25 @@ export const site = {
     product: "ADAM",
     company: "AerVigil",
     lockup: "by AerVigil",
+    /** Full horizontal lockup (sign + "ADAM" + "by AerVigil"): colour on light, white on dark. */
+    logoHorizontal: "/assets/home/brand/adam-logo-horizontal-color.svg",
+    logoHorizontalWhite: "/assets/home/brand/adam-logo-horizontal-white.svg",
     logoColor: "/assets/home/brand/adam-logo-color.svg",
     logoSign: "/assets/home/brand/adam-sign.svg",
     logoWhite: "/assets/home/brand/adam-logo-white.svg",
     logoSignLight: "/assets/home/brand/adam-sign-light.svg",
-    linkedin: "https://www.linkedin.com/",
+    linkedin: "https://www.linkedin.com/company/adam-%E2%80%93-ai-driven-air-monitoring/home/",
   },
 
   nav: {
     /* Hrefs are root-relative so they resolve from both `/` and `/solutions`. */
     links: [
       { label: "Problem", href: "/#problem" },
-      { label: "Technology", href: "/technology" },
+      { label: "Solution", href: "/technology" },
       { label: "Why ADAM", href: "/#why" },
-      { label: "Solutions", href: "/solutions" },
-      { label: "See It in Action", href: "/#demo" },
-      { label: "Who we are", href: "/#company" },
+      { label: "Applications", href: "/solutions" },
+      { label: "In Action", href: "/#demo" },
+      { label: "About", href: "/#company" },
       { label: "News", href: "/#news" },
     ] as NavLink[],
     /** Opens the shared contact mailto — see components/ui/ContactCta. */
@@ -84,7 +87,7 @@ export const site = {
     /* The mission is one block: headline + tagline + sensor line, never separated. */
     tagline: "Cities in motion. Air under control.",
     sensor: "We turned the city into a sensor.",
-    body: "ADAM is a mobile, AI-driven air monitoring system in development by AerVigil — designed to ride on partner vehicles and read the air street by street.",
+    body: "ADAM is a mobile, AI-driven air monitoring system that makes air-quality data visible and actionable for cities, businesses, and communities.",
     primaryCta: { label: "See it in action", href: "#demo" },
     secondaryCta: { label: "How ADAM works", href: "#solution" },
     image: "/assets/home/hero-moving-lab.webp",
@@ -484,7 +487,8 @@ export const site = {
     title: "Put your city in motion.",
     body: "Cities, fleets, industry, researchers — if street-level air intelligence matters to you, let’s talk.",
     ctaLabel: "Start a conversation",
-    /** Rendered as `mailto:?subject=…`, matching the design (recipient left blank). */
+    /** Recipient of the shared contact mailto (components/ui/ContactCta) and the footer email link. */
+    email: "contact@aervigil.com",
     mailSubject: "ADAM by AerVigil",
   },
 
@@ -495,10 +499,12 @@ export const site = {
       {
         title: "Explore",
         links: [
-          { label: "Technology", href: "/technology" },
+          { label: "Problem", href: "/#problem" },
+          { label: "Solution", href: "/technology" },
           { label: "Why ADAM", href: "/#why" },
-          { label: "Solutions", href: "/solutions" },
-          { label: "See It in Action", href: "/#demo" },
+          { label: "Applications", href: "/solutions" },
+          { label: "In Action", href: "/#demo" },
+          { label: "About", href: "/#company" },
           { label: "News", href: "/#news" },
           { label: "Brochure (PDF)", href: "/downloads/adam-brochure-2026.pdf" },
         ],
@@ -506,8 +512,9 @@ export const site = {
       {
         title: "Connect",
         links: [
-          { label: "LinkedIn", href: "https://www.linkedin.com/" },
-          { label: "Contact form", href: "/#contact" },
+          { label: "contact@aervigil.com", href: "mailto:contact@aervigil.com" },
+          { label: "LinkedIn", href: "https://www.linkedin.com/company/adam-%E2%80%93-ai-driven-air-monitoring/home/" },
+          { label: "Contact", href: "/#contact" },
         ],
       },
     ] as { title: string; links: NavLink[] }[],

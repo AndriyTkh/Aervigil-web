@@ -80,16 +80,16 @@ root-relative (`/#problem`) so they resolve from both pages:
 | Nav label | Target |
 | --- | --- |
 | Problem | `/#problem` |
-| Technology | `/#solution` |
+| Solution | `/technology` |
 | Why ADAM | `/#why` |
-| Solutions | `/solutions` |
-| See It in Action | `/#demo` |
-| Who we are | `/#company` |
+| Applications | `/solutions` |
+| In Action | `/#demo` |
+| About | `/#company` |
 | News | `/#news` |
-| Start a conversation (CTA) | `/#contact` |
+| Start a conversation (CTA) | `mailto:contact@aervigil.com` |
 
-The footer repeats a subset (Technology, Why ADAM, Solutions, See It in Action, News)
-plus LinkedIn and Contact.
+The footer repeats the same seven labels plus the brochure, and a Connect group with
+the contact email, LinkedIn and Contact. Labels renamed on team feedback, 2026-09-21.
 
 ## Claims that carry compliance weight
 
@@ -127,8 +127,6 @@ ADAM is pre-launch. The page says so in four places, and all four should survive
 
 | Where | Current | Needs |
 | --- | --- | --- |
-| Contact CTA | `mailto:` with no recipient (as designed) | Real inbox address |
-| Footer / nav LinkedIn | `https://www.linkedin.com/` | Real company profile |
 | News | Two `[ upcoming: … ]` entries | Real posts, or hide the section |
 | "All news →" | Links back to `#news` | Real news index once one exists |
 | Demo CTA | `https://adam.aervigil.com` | Confirm the host is live before launch |

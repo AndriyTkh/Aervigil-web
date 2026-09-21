@@ -44,13 +44,7 @@ export function SiteHeader() {
 
         <div className="site-header__inner">
           <a className="brand" href="/#hero" aria-label={`${brand.product} ${brand.lockup} — home`}>
-            <img className="brand__logo" src={brand.logoSign} alt="" />
-            <span className="brand__lockup" aria-hidden="true">
-              <span className="brand__product">{brand.product}</span>
-              <span className="brand__company">
-                by <span className="brand__company-name">{brand.company}</span>
-              </span>
-            </span>
+            <img className="brand__logo" src={brand.logoHorizontal} alt="" />
           </a>
 
           <button
